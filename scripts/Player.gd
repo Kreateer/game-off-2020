@@ -1,40 +1,49 @@
-extends Area2D
+extends KinematicBody2D
 
 signal hit
-export var speed = 400
+export (int) var movement_speed = 100
+export (int) var gravity = 1200
+export (int) var jump_speed = -400
 
-var screen_size # Size of the game window
+var velocity = Vector2()
+var jumping = false
+
+var screen_size # Empty var
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	screen_size = get_viewport_rect().size
-	hide()
+	screen_size = get_viewport_rect().size # Holds the main screen size
+	#hide()
+	pass
 
+func get_input():
+	velocity.x = 0
+	var right = Input.is_action_pressed("right")
+	var left = Input.is_action_pressed("left")
+	var jump = Input.is_action_pressed("jump")
+	
+	if jump and is_on_floor():
+		jumping = true
+		velocity.y = jump_speed
+	if right:
+		velocity.x += movement_speed
+	if left:
+		velocity.x -= movement_speed
 
-
+func _physics_process(delta):
+	get_input()
+	velocity.y += gravity * delta
+	if jumping and is_on_floor():
+		jumping = false
+	velocity = move_and_slide(velocity, Vector2(0, -1))
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = Vector2() # Movement vector (has X and Y values)
-	
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("ui_up"):
-		velocity.y += 1
-	if Input.is_action_pressed("ui_down"):
-		velocity.y -= 1
-	
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		#$AnimatedSprite.play()
-	else:
-		#$AnimatedSprite.stop()
-	
-	
-	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.x = clamp(position.y, 0, screen_size.y)
+	#position += velocity * delta
+	#print(screen_size)
+	#position.x = clamp(position.x, 8, screen_size.x)
+	#position.x = clamp(position.y, 8, screen_size.y)
+	pass
 
 
 func _on_Player_body_entered(body):
