@@ -1,15 +1,74 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/art/tilesets/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Main.gd" type="Script" id=3]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/PauseScene.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 6 )
 
 [node name="Main" type="Node"]
+script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+visible = false
 position = Vector2( 431.799, 957.98 )
+
+[node name="StartPosition" type="Position2D" parent="Player"]
+position = Vector2( -431.799, -957.98 )
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+position = Vector2( 0.200989, 2.02002 )
+current = true
+zoom = Vector2( 0.4, 0.4 )
+process_mode = 0
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 1835038, 0, 0, 1835039, 0, 0, 1835040, 0, 0, 1900567, 0, 0, 1900568, 0, 0, 1900569, 0, 0, 1900570, 0, 0, 1900571, 0, 0, 1900572, 0, 0, 1900573, 0, 0, 1900574, 0, 0, 1900575, 0, 0, 1900576, 0, 0, 1900577, 0, 0, 1900578, 0, 0, 1966101, 1, 0, 1966102, 0, 0, 1966103, 0, 0, 1966104, 0, 0, 1966105, 0, 0, 1966106, 0, 0, 1966107, 0, 0, 1966108, 0, 0, 1966109, 0, 0, 1966110, 0, 0, 1966111, 0, 0, 1966112, 0, 0, 1966113, 0, 0, 1966114, 0, 0, 1966118, 0, 0, 1966119, 0, 0, 2031616, 0, 0, 2031617, 0, 0, 2031618, 0, 0, 2031619, 0, 0, 2031620, 0, 0, 2031621, 0, 0, 2031622, 0, 0, 2031623, 0, 0, 2031624, 0, 0, 2031625, 0, 0, 2031626, 0, 0, 2031627, 0, 0, 2031628, 0, 0, 2031629, 0, 0, 2031630, 0, 0, 2031631, 0, 0, 2031632, 0, 0, 2031633, 0, 0, 2031634, 0, 0, 2031635, 0, 0, 2031636, 0, 0, 2031637, 0, 0, 2031638, 0, 0, 2031639, 0, 0, 2031640, 0, 0, 2031641, 0, 0, 2031642, 0, 0, 2031643, 0, 0, 2031644, 0, 0, 2031645, 0, 0, 2031646, 0, 0, 2031647, 0, 0, 2031648, 0, 0, 2031649, 0, 0, 2031650, 0, 0, 2031651, 0, 0, 2031652, 0, 0, 2031653, 0, 0, 2031654, 0, 0, 2031655, 0, 0 )
+
+[node name="GUI" parent="." instance=ExtResource( 4 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 1
+offset = Vector2( 520, -720 )
+transform = Transform2D( 1, 0, 0, 1, 520, -720 )
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.228358
+anchor_top = 0.697028
+anchor_right = 0.228358
+anchor_bottom = 0.697028
+margin_left = -38.4473
+margin_top = -0.790344
+margin_right = 43.5527
+margin_bottom = 41.2097
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseScene" parent="CanvasLayer" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 1248, 736 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[connection signal="game_start" from="GUI" to="." method="_on_GUI_game_start"]

@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/PauseScene.gd" type="Script" id=2]
+[ext_resource path="res://scripts/PopupScript.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+extra_spacing_top = 7
+font_data = ExtResource( 1 )
+
+[sub_resource type="InputEventAction" id=2]
+action = "esc"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+extra_spacing_top = 7
+font_data = ExtResource( 1 )
+
+[sub_resource type="InputEventAction" id=6]
+action = "esc"
+
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
+
+[node name="PauseScene" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Pause" type="Button" parent="."]
+margin_right = 74.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+keep_pressed_outside = true
+shortcut = SubResource( 3 )
+text = "Pause"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseCanvas" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="MenuPopup" type="Popup" parent="PauseCanvas"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+popup_exclusive = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseCanvas/MenuPopup"]
+margin_left = -82.0
+margin_top = -91.0
+margin_right = 190.0
+margin_bottom = -47.0
+custom_fonts/font = SubResource( 4 )
+text = "Game Paused"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unpause" type="Button" parent="PauseCanvas/MenuPopup"]
+margin_left = -44.0
+margin_top = -16.0
+margin_right = 134.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+shortcut_in_tooltip = false
+keep_pressed_outside = true
+shortcut = SubResource( 7 )
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="PauseCanvas/MenuPopup"]
+margin_left = -44.0
+margin_top = 48.0
+margin_right = 136.0
+margin_bottom = 98.0
+custom_fonts/font = SubResource( 1 )
+shortcut_in_tooltip = false
+keep_pressed_outside = true
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Pause" to="." method="_on_Pause_pressed"]
+[connection signal="pressed" from="PauseCanvas/MenuPopup/Unpause" to="PauseCanvas/MenuPopup" method="_on_Unpause_pressed"]
+[connection signal="pressed" from="PauseCanvas/MenuPopup/Exit" to="PauseCanvas/MenuPopup" method="_on_Exit_pressed"]

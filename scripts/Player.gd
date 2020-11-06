@@ -43,7 +43,7 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += velocity * delta
-	print(screen_size)
+  #print(screen_size)
 	position.x = clamp(position.x, edge_lvl_l, screen_size.x - edge_lvl_r)
 
 func _on_Player_body_entered(body):
