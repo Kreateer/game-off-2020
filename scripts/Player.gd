@@ -8,6 +8,9 @@ export (int) var jump_speed = -400
 var velocity = Vector2()
 var jumping = false
 
+var edge_lvl_r = 700
+var edge_lvl_l = 8
+
 var screen_size # Empty var
 
 # Called when the node enters the scene tree for the first time.
@@ -39,12 +42,9 @@ func _physics_process(delta):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#position += velocity * delta
-	#print(screen_size)
-	#position.x = clamp(position.x, 8, screen_size.x)
-	#position.x = clamp(position.y, 8, screen_size.y)
-	pass
-
+	position += velocity * delta
+	print(screen_size)
+	position.x = clamp(position.x, edge_lvl_l, screen_size.x - edge_lvl_r)
 
 func _on_Player_body_entered(body):
 	emit_signal("hit")
