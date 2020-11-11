@@ -70,16 +70,20 @@ func player_oxygen(amount):
 	pass
 
 func _physics_process(delta):
-	get_input()
-	velocity.y += gravity * delta
-	if jumping and is_on_floor():
-		jumping = false
+	if alive:
+		get_input()
+		velocity.y += gravity * delta
+		if jumping and is_on_floor():
+			jumping = false
+	else:
+		velocity = Vector2(0, 0)
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += velocity * delta
-	position.x = clamp(position.x, edge_lvl_l, screen_size.x - edge_lvl_r)
+	if alive:
+		position += velocity * delta
+		position.x = clamp(position.x, edge_lvl_l, screen_size.x - edge_lvl_r)
 
 #func _on_Player_body_entered(body):
 #	emit_signal("hit")
