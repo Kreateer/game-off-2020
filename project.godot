@@ -34,6 +34,7 @@ window/stretch/aspect="keep"
 [gdnative]
 
 singletons=[ "res://git_api.gdnlib" ]
+
 [importer_defaults]
 
 texture={

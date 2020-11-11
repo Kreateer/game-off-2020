@@ -67,8 +67,11 @@ func player_heal(amount):
 func player_oxygen(amount):
 	if oxygen != max_oxygen:
 		oxygen -= amount
-		print("Oxygen lost {0} points".format([amount]))	
-	pass
+		print("Oxygen lost {0} points".format([amount]))
+	elif oxygen <= 0:
+		_die()
+	else:
+		pass
 
 func _physics_process(delta):
 	if alive: # Only create velocity when player is alive

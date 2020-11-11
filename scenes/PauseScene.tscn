@@ -1,16 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/FFFFORWA.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/PauseScene.gd" type="Script" id=2]
 [ext_resource path="res://scripts/PopupScript.gd" type="Script" id=3]
-
-
+[ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=4]
 
 [sub_resource type="InputEventAction" id=1]
 action = "esc"
 
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 4 )
 
 [sub_resource type="InputEventAction" id=3]
 action = "esc"
@@ -56,7 +58,7 @@ margin_left = -82.0
 margin_top = -91.0
 margin_right = 190.0
 margin_bottom = -47.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 5 )
 text = "Game Paused"
 align = 1
 valign = 1

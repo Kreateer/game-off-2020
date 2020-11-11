@@ -99,10 +99,10 @@ __meta__ = {
 }
 
 [node name="OxygenBar" type="ProgressBar" parent="CanvasLayer/Oxygen"]
-margin_left = -16.0
-margin_top = 32.0
-margin_right = 96.0
-margin_bottom = 46.0
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 120.0
+margin_bottom = 62.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
