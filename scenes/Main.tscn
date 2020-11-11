@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/art/tilesets/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,13 +6,27 @@
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/PauseScene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=6]
+[ext_resource path="res://scenes/PickupItem01.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/PickupItem02.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Darkness.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/art/black.png" type="Texture" id=10]
+[ext_resource path="res://assets/fonts/FFFFORWA.tres" type="DynamicFont" id=11]
 
-[sub_resource type="DynamicFont" id=2]
-size = 30
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.203922, 0.388235, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.509804 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+use_mipmaps = true
+extra_spacing_top = 3
 font_data = ExtResource( 6 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
+oxygen = 100
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 visible = false
@@ -58,7 +72,7 @@ margin_left = -38.4473
 margin_top = -0.790344
 margin_right = 43.5527
 margin_bottom = 41.2097
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 11 )
 text = "0"
 align = 1
 valign = 1
@@ -70,5 +84,55 @@ __meta__ = {
 visible = false
 position = Vector2( 1248, 736 )
 
+[node name="Oxygen" type="Label" parent="CanvasLayer"]
+margin_left = -208.0
+margin_top = 736.0
+margin_right = -126.0
+margin_bottom = 774.0
+custom_fonts/font = ExtResource( 11 )
+text = "Oxygen"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OxygenBar" type="ProgressBar" parent="CanvasLayer/Oxygen"]
+margin_left = -16.0
+margin_top = 32.0
+margin_right = 96.0
+margin_bottom = 46.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OxygenTimer" type="Timer" parent="CanvasLayer/Oxygen"]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Item1" parent="." instance=ExtResource( 7 )]
+position = Vector2( 880, 880 )
+
+[node name="Item2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 696, 920 )
+
+[node name="Darkness" parent="." instance=ExtResource( 9 )]
+
+[node name="TEMP BACKGROUND" type="Sprite" parent="."]
+modulate = Color( 0.774414, 0.142178, 0.142178, 1 )
+position = Vector2( 960, 540 )
+z_index = -100
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1920, 1080 )
+__meta__ = {
+"_editor_description_": ""
+}
+[connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 [connection signal="game_start" from="GUI" to="." method="_on_GUI_game_start"]
+[connection signal="timeout" from="CanvasLayer/Oxygen/OxygenTimer" to="." method="_on_OxygenTimer_timeout"]
+[connection signal="DamageArea_PlayerCollision" from="Darkness" to="Player" method="_on_Darkness_DamageArea_PlayerCollision"]
