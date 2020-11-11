@@ -13,10 +13,6 @@ func game_win():
 func game_lose():
 	pass
 
-func update_score(score):
-	#get_node("/root/Main/Player/Camera2D/Score").text = str(score)
-	#get_node("/root/Main/Player/Camera2D/Score").text = str(score)
-	get_node("/root/Main/CanvasLayer/Score").text = str(score)
 
 func show_game_over():
 	show_message("Game Over!")
