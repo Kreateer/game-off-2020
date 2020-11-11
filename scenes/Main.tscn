@@ -10,18 +10,12 @@
 [ext_resource path="res://scenes/PickupItem02.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Darkness.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/art/black.png" type="Texture" id=10]
+[ext_resource path="res://assets/fonts/FFFFORWA.tres" type="DynamicFont" id=11]
 
-[sub_resource type="DynamicFont" id=1]
-size = 30
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 6 )
-
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.203922, 0.388235, 1, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 0.509804 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -78,7 +72,7 @@ margin_left = -38.4473
 margin_top = -0.790344
 margin_right = 43.5527
 margin_bottom = 41.2097
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 11 )
 text = "0"
 align = 1
 valign = 1
@@ -95,7 +89,7 @@ margin_left = -208.0
 margin_top = 736.0
 margin_right = -126.0
 margin_bottom = 774.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 11 )
 text = "Oxygen"
 align = 1
 valign = 1
@@ -109,8 +103,8 @@ margin_left = -16.0
 margin_top = 32.0
 margin_right = 96.0
 margin_bottom = 46.0
-custom_styles/fg = SubResource( 4 )
-custom_styles/bg = SubResource( 5 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
