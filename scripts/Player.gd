@@ -17,11 +17,21 @@ var edge_lvl_r = 700
 var edge_lvl_l = 8
 
 var screen_size # Empty var
+var origin = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size # Holds the main screen size
-	pass
+	origin = self.transform.get_origin()
+	reset()
+
+# Reset the position of the player to the starting point
+func reset():	
+	self.position.x = origin.x
+	self.position.y = origin.y
+	health = max_health
+	oxygen = max_oxygen
+	alive = true
 
 func get_input():
 	velocity.x = 0
