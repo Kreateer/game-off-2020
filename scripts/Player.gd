@@ -7,9 +7,11 @@ export (int) var jump_speed = -400
 
 var velocity = Vector2()
 var jumping = false
-var health = 100
+var max_health = 100
+var max_oxygen = 100
 var alive = true
-var oxygen = 100
+var oxygen = max_oxygen
+var health = max_health
 
 var edge_lvl_r = 700
 var edge_lvl_l = 8
