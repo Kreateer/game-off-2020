@@ -4,6 +4,8 @@ var score
 export (int) var oxygen
 onready var oxygen_bar = get_node("CanvasLayer/Oxygen/OxygenBar")
 onready var oxygen_timer = get_node("CanvasLayer/Oxygen/OxygenTimer")
+onready var darkness = get_node("Darkness")
+
 func _ready():
 	oxygen_bar.max_value = oxygen
 	oxygen_bar.value = oxygen
@@ -17,6 +19,7 @@ func _physics_process(delta):
 
 func new_game():
 	score = 0
+	darkness.reset()
 	$Player.show()
 	$CanvasLayer/Score.show()
 	$CanvasLayer/PauseScene.show()
@@ -24,11 +27,13 @@ func new_game():
 	oxygen_timer.start()
 	#$Player.start($Player/StartPosition.position)
 	#$StartTimer.start()
+	darkness.start()
 	$GUI.update_score(score)
 	#$Music.play()
 
 func game_over():
 	#ScoreTimer.stop()
+	darkness.pause()
 	$GUI.show_game_over()
 	#$Music.stop()
 

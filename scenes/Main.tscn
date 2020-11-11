@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/art/tilesets/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=6]
 [ext_resource path="res://scenes/PickupItem01.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/PickupItem02.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Darkness.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -123,5 +124,9 @@ position = Vector2( 880, 880 )
 
 [node name="Item2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 696, 920 )
+
+[node name="Darkness" parent="." instance=ExtResource( 9 )]
+
 [connection signal="game_start" from="GUI" to="." method="_on_GUI_game_start"]
 [connection signal="timeout" from="CanvasLayer/Oxygen/OxygenTimer" to="." method="_on_OxygenTimer_timeout"]
+[connection signal="DamageArea_PlayerCollision" from="Darkness" to="Player" method="_on_Darkness_DamageArea_PlayerCollision"]
