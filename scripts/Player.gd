@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-signal hit
+signal Dead()
+
 export (int) var movement_speed = 100
 export (int) var gravity = 1200
 export (int) var jump_speed = -400
@@ -48,25 +49,24 @@ func get_input():
 		velocity.x -= movement_speed
 
 func player_damage(amount):
-	if alive != false:
-		health -= amount
-		print("Damaged {0} points".format([amount]))
-	else:
-		# Show death screen with total score and restart option
-		pass
+	if !alive:
+		return
+	health -= amount
+	print("Damaged {0} points".format([amount]))
+	if health <= 0:
+		_die()
 	
 func player_heal(amount):
-	if health != 100:
+	if health != max_health:
 		health += amount
 		print("Healed {0} points".format([amount]))
 	else:
 		pass
 
 func player_oxygen(amount):
-	if oxygen != 100:
+	if oxygen != max_oxygen:
 		oxygen -= amount
-		print("Oxygen lost {0} points".format([amount]))
-	
+		print("Oxygen lost {0} points".format([amount]))	
 	pass
 
 func _physics_process(delta):
@@ -86,3 +86,12 @@ func _process(delta):
 
 func _on_PickupItem1_body_entered(body):
 	hide()
+
+func _on_Darkness_DamageArea_PlayerCollision():
+	if !alive:
+		return
+	_die()
+	
+func _die():
+	alive = false
+	emit_signal("Dead")

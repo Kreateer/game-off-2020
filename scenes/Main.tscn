@@ -132,6 +132,7 @@ region_rect = Rect2( 0, 0, 1920, 1080 )
 __meta__ = {
 "_editor_description_": ""
 }
+[connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 [connection signal="game_start" from="GUI" to="." method="_on_GUI_game_start"]
 [connection signal="timeout" from="CanvasLayer/Oxygen/OxygenTimer" to="." method="_on_OxygenTimer_timeout"]
 [connection signal="DamageArea_PlayerCollision" from="Darkness" to="Player" method="_on_Darkness_DamageArea_PlayerCollision"]

@@ -20,6 +20,7 @@ func _physics_process(delta):
 func new_game():
 	score = 0
 	darkness.reset()
+	$Player.reset()
 	$Player.show()
 	$CanvasLayer/Score.show()
 	$CanvasLayer/PauseScene.show()
@@ -27,6 +28,7 @@ func new_game():
 	oxygen_timer.start()
 	#$Player.start($Player/StartPosition.position)
 	#$StartTimer.start()
+	yield(get_tree().create_timer(1.0), "timeout")
 	darkness.start()
 	$GUI.update_score(score)
 	#$Music.play()
@@ -42,3 +44,6 @@ func _on_GUI_game_start():
 
 func _on_OxygenTimer_timeout():
 	$Player.player_oxygen(1)
+
+func _on_Player_Dead():
+	game_over()
