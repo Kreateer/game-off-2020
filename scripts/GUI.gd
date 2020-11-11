@@ -37,5 +37,6 @@ func _on_ExitButton_pressed():
 
 
 func _on_RetryButton_pressed():
+	$Title.hide()
 	$RetryButton.hide()
 	emit_signal("game_start")
