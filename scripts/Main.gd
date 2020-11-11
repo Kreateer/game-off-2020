@@ -27,7 +27,9 @@ func new_game():
 	$CanvasLayer/Oxygen.show()
 	oxygen_timer.start()
 	#$Player.start($Player/StartPosition.position)
-	#$StartTimer.start()
+	#$StartTimer.start()	
+	# IMPORTANT: Wait for darkness and player transforms before enabling 
+	# darkness again, otherwise we get collisions causing invalid player death.
 	yield(get_tree().create_timer(1.0), "timeout")
 	darkness.start()
 	$GUI.update_score(score)

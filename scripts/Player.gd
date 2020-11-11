@@ -26,7 +26,8 @@ func _ready():
 	origin = self.transform.get_origin()
 	reset()
 
-# Reset the position of the player to the starting point
+# Reset the position of the player to the starting point and 
+# re-initialize all health / oxygen parameters
 func reset():	
 	self.position.x = origin.x
 	self.position.y = origin.y
@@ -70,7 +71,7 @@ func player_oxygen(amount):
 	pass
 
 func _physics_process(delta):
-	if alive:
+	if alive: # Only create velocity when player is alive
 		get_input()
 		velocity.y += gravity * delta
 		if jumping and is_on_floor():
@@ -81,12 +82,9 @@ func _physics_process(delta):
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if alive:
+	if alive: # Only create velocity when player is alive
 		position += velocity * delta
 		position.x = clamp(position.x, edge_lvl_l, screen_size.x - edge_lvl_r)
-
-#func _on_Player_body_entered(body):
-#	emit_signal("hit")
 
 func _on_PickupItem1_body_entered(body):
 	hide()
