@@ -2,7 +2,7 @@ extends Node2D
 
 signal DamageArea_PlayerCollision()
 
-var DARKNESS_BASE_SPEED = 0.01
+var DARKNESS_BASE_SPEED = 0.06
 # TODO: change based on external factors (ie, powerups, level, difficulty)
 var modifier = 10
 

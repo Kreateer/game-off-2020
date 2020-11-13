@@ -14,7 +14,7 @@ var alive = true
 var oxygen = max_oxygen
 var health = max_health
 
-var edge_lvl_r = 700
+var edge_lvl_r = 5
 var edge_lvl_l = 8
 
 var screen_size # Empty var
@@ -82,7 +82,7 @@ func _physics_process(delta):
 	else:
 		velocity = Vector2(0, 0)
 	velocity = move_and_slide(velocity, Vector2(0, -1))
-		
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if alive: # Only create velocity when player is alive
@@ -100,3 +100,7 @@ func _on_Darkness_DamageArea_PlayerCollision():
 func _die():
 	alive = false
 	emit_signal("Dead")
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	_die()
