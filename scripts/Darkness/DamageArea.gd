@@ -1,6 +1,6 @@
 extends Area2D
 
-onready var player = get_tree().current_scene.get_node("/root/Main/Player")
+onready var player = get_tree().current_scene.get_node("/root/Tutorial/Player")
 
 signal PlayerCollision()
 

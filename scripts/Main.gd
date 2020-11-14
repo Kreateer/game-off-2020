@@ -5,11 +5,15 @@ export (int) var oxygen
 onready var oxygen_bar = get_node("CanvasLayer/Oxygen/OxygenBar")
 onready var oxygen_timer = get_node("CanvasLayer/Oxygen/OxygenTimer")
 onready var darkness = get_node("Darkness")
+onready var def_player_position = $Player/StartPosition.position
+onready var player_position = $Player.position
 
 func _ready():
 	oxygen_bar.max_value = oxygen
 	oxygen_bar.value = oxygen
 	oxygen_timer.wait_time = oxygen
+	new_game()
+	 
 
 #func _process(delta):
 #	pass
@@ -41,8 +45,6 @@ func game_over():
 	$GUI.show_game_over()
 	#$Music.stop()
 
-func _on_GUI_game_start():
-	new_game()
 
 func _on_OxygenTimer_timeout():
 	$Player.player_oxygen(1)

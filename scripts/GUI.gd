@@ -16,7 +16,7 @@ func game_lose():
 func update_score(score):
 	#get_node("/root/Main/Player/Camera2D/Score").text = str(score)
 	#get_node("/root/Main/Player/Camera2D/Score").text = str(score)
-	get_node("/root/Main/CanvasLayer/Score").text = str(score)
+	get_node("/root/Tutorial/CanvasLayer/Score").text = str(score)
 
 func show_game_over():
 	show_message("Game Over!")
@@ -29,6 +29,17 @@ func _on_StartButton_pressed():
 	$StartButton.hide()
 	$ExitButton.hide()
 	emit_signal("game_start")
+#	for root in get_tree():
+#		if root == "Main":
+#			get_tree().change_scene("res://scenes/Tutorial.tscn")
+#		else:
+#			break
+	get_tree().change_scene("res://scenes/Tutorial.tscn")
+#	for root in get_tree():
+#		if root == "Tutorial":
+#			root.new_game()
+#		else:
+#			break
 
 # When the Exit button is pressed, the game closes.
 # This will NOT save player progression.
@@ -40,3 +51,8 @@ func _on_RetryButton_pressed():
 	$Title.hide()
 	$RetryButton.hide()
 	emit_signal("game_start")
+	var tutorial = self.get_parent()
+	if tutorial.name == "Tutorial":
+		tutorial.new_game()
+	else:
+		pass
