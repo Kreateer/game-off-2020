@@ -112,6 +112,7 @@ __meta__ = {
 }
 
 [node name="OxygenTimer" type="Timer" parent="CanvasLayer/Oxygen"]
+one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
