@@ -20,9 +20,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Game Off 2020"
+config/name="LunaRun"
+config/description="A 2D runner/platformer game project for Game Off 2020 game jam."
 run/main_scene="res://scenes/Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://pixel_moon.png"
 
 [display]
 
