@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 signal Dead()
+signal Dead_Suffocate()
+signal Dead_Fall()
 
 export (int) var movement_speed = 100
 export (int) var gravity = 1200
@@ -33,6 +35,7 @@ func reset():
 	self.position.y = origin.y
 	health = max_health
 	oxygen = max_oxygen
+	movement_speed = 100
 	alive = true
 
 # Main Player movement
@@ -67,6 +70,14 @@ func player_heal(amount):
 	else:
 		pass
 
+# Sets health value to specific amount
+func set_health(amount):
+	self.health = amount
+
+# Checks and returns current player health value
+func check_health():
+	return self.health
+
 # Main player oxygen function
 func player_oxygen(amount, empty = false):
 	if oxygen != max_oxygen:
@@ -78,6 +89,14 @@ func player_oxygen(amount, empty = false):
 		_die()
 	else:
 		pass
+
+# Sets oxygen value to specific amount
+func set_oxygen(amount):
+	self.oxygen = amount
+
+# Checks and returns current player oxygen value
+func check_oxygen():
+	return self.oxygen
 
 func _physics_process(delta):
 	if alive: # Only create velocity when player is alive
@@ -108,8 +127,15 @@ func _on_Darkness_DamageArea_PlayerCollision():
 
 # Main Player death function
 func _die():
-	alive = false
-	emit_signal("Dead")
+	if oxygen <= 0:
+		alive = false
+		emit_signal("Dead_Suffocate")
+	elif $VisibilityNotifier2D.is_on_screen() == false:
+		alive = false
+		emit_signal("Dead_Fall")
+	else:
+		alive = false
+		emit_signal("Dead")
 
 
 func _on_VisibilityNotifier2D_screen_exited():

@@ -14,15 +14,24 @@ func game_lose():
 	pass
 
 # Updates the Score label for the Player
-func update_score(score):
+#func update_score(score):
 	#get_node("/root/Main/Player/Camera2D/Score").text = str(score)
 	#get_node("/root/Main/Player/Camera2D/Score").text = str(score)
-	get_node("/root/Tutorial/CanvasLayer/Score").text = str(score)
+#	get_node("/root/Tutorial/CanvasLayer/Score").text = str(score)
 
 # Shows the 'Game Over' screen
 func show_game_over():
 	show_message("Game Over!")
 	$RetryButton.show()
+
+func suffocate():
+	show_message("Game Over!\nYou've Suffocated!")
+	$RetryButton.show()
+
+func fall_off():
+	show_message("Game Over!\nYou've fallen off the map!")
+	$RetryButton.show()
+
 
 
 # Change scene to Tutorial level to start the game

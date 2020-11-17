@@ -29,6 +29,8 @@ func new_game():
 	score = 0
 	darkness.reset()
 	$Player.reset()
+	get_tree().call_group("Resettable Pickups", "reset")
+	#$Item3.reset()
 	$Player.show()
 	$CanvasLayer/Score.show()
 	$CanvasLayer/PauseScene.show()
@@ -41,7 +43,7 @@ func new_game():
 	# darkness again, otherwise we get collisions causing invalid player death.
 	yield(get_tree().create_timer(1.0), "timeout")
 	darkness.start()
-	$GUI.update_score(score)
+	$CanvasLayer/Score.update_score(score)
 	#$Music.play()
 
 func game_over():
@@ -49,6 +51,14 @@ func game_over():
 	darkness.pause()
 	$GUI.show_game_over()
 	#$Music.stop()
+
+func game_over_oxygen():
+	darkness.pause()
+	$GUI.suffocate()
+
+func game_over_fall():
+	darkness.pause()
+	$GUI.fall_off()
 
 # Once OxygenTimer runs out, the Player's oxygen
 # effectively expires, which kills the Player.
@@ -60,3 +70,11 @@ func _on_OxygenTimer_timeout():
 
 func _on_Player_Dead():
 	game_over()
+
+
+func _on_Player_Dead_Fall():
+	game_over_fall()
+
+
+func _on_Player_Dead_Suffocate():
+	game_over_oxygen()
