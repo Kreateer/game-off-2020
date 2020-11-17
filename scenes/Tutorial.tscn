@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/art/black.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/fonts/FFFFORWA.tres" type="DynamicFont" id=11]
 [ext_resource path="res://scenes/PickupItem03.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scripts/Score.gd" type="Script" id=13]
+[ext_resource path="res://scenes/PickupItem04.tscn" type="PackedScene" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.203922, 0.388235, 1, 1 )
@@ -119,10 +120,14 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[node name="Item1" parent="." instance=ExtResource( 8 )]
+[node name="Item1" parent="." groups=[
+"Pickups",
+] instance=ExtResource( 8 )]
 position = Vector2( 880, 880 )
 
-[node name="Item2" parent="." instance=ExtResource( 5 )]
+[node name="Item2" parent="." groups=[
+"Pickups",
+] instance=ExtResource( 5 )]
 position = Vector2( 696, 920 )
 
 [node name="Darkness" parent="." instance=ExtResource( 9 )]
@@ -149,8 +154,17 @@ visible = false
 [node name="ExitButton" parent="GUI" index="2"]
 visible = false
 
-[node name="Item3" parent="." instance=ExtResource( 12 )]
+[node name="Item3" parent="." groups=[
+"Pickups",
+"Resettable Pickups",
+] instance=ExtResource( 12 )]
 position = Vector2( 569.401, 952 )
+
+[node name="Item4" parent="." groups=[
+"Pickups",
+"Resettable Pickups",
+] instance=ExtResource( 14 )]
+position = Vector2( 1008, 848 )
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 [connection signal="Dead_Fall" from="Player" to="." method="_on_Player_Dead_Fall"]
 [connection signal="Dead_Suffocate" from="Player" to="." method="_on_Player_Dead_Suffocate"]

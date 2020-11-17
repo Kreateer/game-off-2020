@@ -29,7 +29,8 @@ func new_game():
 	score = 0
 	darkness.reset()
 	$Player.reset()
-	$Item3.reset()
+	get_tree().call_group("Resettable Pickups", "reset")
+	#$Item3.reset()
 	$Player.show()
 	$CanvasLayer/Score.show()
 	$CanvasLayer/PauseScene.show()

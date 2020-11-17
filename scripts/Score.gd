@@ -1,6 +1,10 @@
 extends Label
 
 
+func check_score():
+	#print(int(self.text))
+	return int(self.text)
+
 func update_score(score):
 	self.text = str(score)
 

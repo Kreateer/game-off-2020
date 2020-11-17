@@ -9,7 +9,7 @@ func on_pickup():
 		if child.name == "Player":
 			$DurationTimer.wait_time = 5
 			$DurationTimer.start()
-			child.movement_speed = 200
+			child.set_health(1000)
 		else:
 			pass
 	pass
@@ -18,8 +18,8 @@ func on_Timeout():
 	var main = self.get_parent()
 	for child in main.get_children():
 		if child.name == "Player":
-			if child.movement_speed != 100:
-				child.movement_speed = 100
+			if child.check_health() > 100:
+				child.set_health(100)
 			else:
 				pass
 		else:
@@ -30,7 +30,7 @@ func reset():
 	score = start_score
 
 
-func _on_PickupArea3_body_entered(KinematicBody2D):
+func _on_PickupArea4_body_entered(KinematicBody2D):
 	var parent = self.get_parent()
 	for node in parent.get_children():
 		if node.name == "CanvasLayer":
@@ -48,6 +48,7 @@ func _on_PickupArea3_body_entered(KinematicBody2D):
 #					node.get_child(0).update_score(new_score)
 				else:
 					pass
+				
 		else:
 			pass
 	on_pickup()

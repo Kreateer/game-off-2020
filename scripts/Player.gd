@@ -70,6 +70,14 @@ func player_heal(amount):
 	else:
 		pass
 
+# Sets health value to specific amount
+func set_health(amount):
+	self.health = amount
+
+# Checks and returns current player health value
+func check_health():
+	return self.health
+
 # Main player oxygen function
 func player_oxygen(amount, empty = false):
 	if oxygen != max_oxygen:
