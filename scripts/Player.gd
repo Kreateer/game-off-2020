@@ -90,6 +90,14 @@ func player_oxygen(amount, empty = false):
 	else:
 		pass
 
+# Sets oxygen value to specific amount
+func set_oxygen(amount):
+	self.oxygen = amount
+
+# Checks and returns current player oxygen value
+func check_oxygen():
+	return self.oxygen
+
 func _physics_process(delta):
 	if alive: # Only create velocity when player is alive
 		get_input()
