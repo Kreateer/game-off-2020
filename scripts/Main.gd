@@ -53,11 +53,13 @@ func new_game():
 func _on_OxygenTimer_timeout():
 	$Player.player_oxygen(0, true)
 
-# Once the Player 'dies', show Game Over screen
+# Once the Player 'dies' stop processing any ongoing states
 func _on_Player_Dead(cause):
 	$CanvasLayer/Score/ScoreTimer.stop()
-	darkness.pause()	
+	darkness.pause()
 
+# On each tick of the ScoreTimer, evaluate 1 tick worth of score and update
+# the score total.
 func _on_ScoreTimer_timeout():
 	var distance_from_darkness = $Player.position.x - darkness.get_edge_position_x();
 	score = score + round((distance_from_darkness / 100) + 1)
