@@ -124,4 +124,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 # Main Player death function
 func _die(cause):
 	if alive:
+		alive = false
 		emit_signal("Dead", cause)

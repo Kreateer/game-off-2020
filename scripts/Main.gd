@@ -47,20 +47,6 @@ func new_game():
 	$CanvasLayer/Score/ScoreTimer.start()
 	#$Music.play()
 
-func game_over():
-	$CanvasLayer/Score/ScoreTimer.stop()
-	darkness.pause()
-	$GUI.show_game_over()
-	#$Music.stop()
-
-func game_over_oxygen():
-	darkness.pause()
-	$GUI.suffocate()
-
-func game_over_fall():
-	darkness.pause()
-	$GUI.fall_off()
-
 # Once OxygenTimer runs out, the Player's oxygen
 # effectively expires, which kills the Player.
 
@@ -69,13 +55,17 @@ func _on_OxygenTimer_timeout():
 
 # Once the Player 'dies', show Game Over screen
 func _on_Player_Dead(cause):
+	$CanvasLayer/Score/ScoreTimer.stop()
+	darkness.pause()
 	match cause:
 		Constants.SUFFOCATE:
-			game_over_oxygen()
+			$GUI.suffocate()
 		Constants.FALL:
-			game_over_fall()
-		Constants.HEALTH, Constants.DARKNESS:
-			game_over()
+			$GUI.fall_off()
+		Constants.DARKNESS:
+			$GUI.show_game_over()
+		Constants.HEALTH:
+			$GUI.show_game_over()
 
 func _on_ScoreTimer_timeout():
 	var distance_from_darkness = $Player.position.x - darkness.get_edge_position_x();
