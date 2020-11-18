@@ -29,4 +29,4 @@ func buy_item(name):
 		break
 		
 func _activate(name):
-	emit_signal(name)
+	emit_signal("item_activated", name)
