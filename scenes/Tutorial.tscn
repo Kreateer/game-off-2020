@@ -86,6 +86,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ScoreTimer" type="Timer" parent="CanvasLayer/Score"]
+wait_time = 0.1
+autostart = true
+
 [node name="PauseScene" parent="CanvasLayer" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 1248, 736 )
@@ -175,6 +179,7 @@ position = Vector2( 1166.66, 952 )
 [connection signal="Dead_Fall" from="Player" to="." method="_on_Player_Dead_Fall"]
 [connection signal="Dead_Suffocate" from="Player" to="." method="_on_Player_Dead_Suffocate"]
 [connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="CanvasLayer/Score/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Oxygen/OxygenTimer" to="." method="_on_OxygenTimer_timeout"]
 [connection signal="DamageArea_PlayerCollision" from="Darkness" to="Player" method="_on_Darkness_DamageArea_PlayerCollision"]
 

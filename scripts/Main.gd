@@ -44,10 +44,11 @@ func new_game():
 	yield(get_tree().create_timer(1.0), "timeout")
 	darkness.start()
 	$CanvasLayer/Score.update_score(score)
+	$CanvasLayer/Score/ScoreTimer.start()
 	#$Music.play()
 
 func game_over():
-	#ScoreTimer.stop()
+	$CanvasLayer/Score/ScoreTimer.stop()
 	darkness.pause()
 	$GUI.show_game_over()
 	#$Music.stop()
@@ -72,9 +73,16 @@ func _on_Player_Dead():
 	game_over()
 
 
+
 func _on_Player_Dead_Fall():
 	game_over_fall()
 
 
 func _on_Player_Dead_Suffocate():
 	game_over_oxygen()
+
+func _on_ScoreTimer_timeout():
+	var distance_from_darkness = $Player.position.x - darkness.get_edge_position_x();
+	score = score + round((distance_from_darkness / 100) + 1)
+	$CanvasLayer/Score.update_score(score)
+
