@@ -68,18 +68,14 @@ func _on_OxygenTimer_timeout():
 	$Player.player_oxygen(0, true)
 
 # Once the Player 'dies', show Game Over screen
-
-func _on_Player_Dead():
-	game_over()
-
-
-
-func _on_Player_Dead_Fall():
-	game_over_fall()
-
-
-func _on_Player_Dead_Suffocate():
-	game_over_oxygen()
+func _on_Player_Dead(cause):
+	match cause:
+		Constants.SUFFOCATE:
+			game_over_oxygen()
+		Constants.FALL:
+			game_over_fall()
+		Constants.HEALTH, Constants.DARKNESS:
+			game_over()
 
 func _on_ScoreTimer_timeout():
 	var distance_from_darkness = $Player.position.x - darkness.get_edge_position_x();

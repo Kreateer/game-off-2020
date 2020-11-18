@@ -25,6 +25,10 @@ config/description="A 2D runner/platformer game project for Game Off 2020 game j
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://pixel_moon.png"
 
+[autoload]
+
+Constants="*res://scripts/Config/Constants.gd"
+
 [display]
 
 window/size/width=1920
