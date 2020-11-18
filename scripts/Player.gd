@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
-signal Dead()
-signal Dead_Suffocate()
-signal Dead_Fall()
+signal Dead(cause)
 
 export (int) var movement_speed = 100
 export (int) var gravity = 1200
@@ -26,13 +24,16 @@ var origin = Vector2()
 func _ready():
 	screen_size = get_viewport_rect().size # Holds the main screen size
 	origin = self.transform.get_origin()
-	reset()
+	resetPosition()
+	resetAttributes()
 
 # Reset the position of the player to the starting point and 
 # re-initialize all health / oxygen parameters
-func reset():	
+func resetPosition():	
 	self.position.x = origin.x
 	self.position.y = origin.y
+
+func resetAttributes():	
 	health = max_health
 	oxygen = max_oxygen
 	movement_speed = 100
@@ -60,7 +61,7 @@ func player_damage(amount):
 	health -= amount
 	print("Damaged {0} points".format([amount]))
 	if health <= 0:
-		_die()
+		_die(Constants.HEALTH)
 
 # Main player heal function
 func player_heal(amount):
@@ -82,13 +83,9 @@ func check_health():
 func player_oxygen(amount, empty = false):
 	if oxygen != max_oxygen:
 		oxygen -= amount
-		print("Oxygen lost {0} points".format([amount]))
-	elif oxygen <= 0:
-		_die()
-	elif empty == true:
-		_die()
-	else:
-		pass
+		print("Oxygen lost {0} points".format([amount]))	
+	if oxygen <= 0 || empty == true:
+		_die(Constants.SUFFOCATE)
 
 # Sets oxygen value to specific amount
 func set_oxygen(amount):
@@ -120,23 +117,15 @@ func _on_PickupItem1_body_entered(body):
 	hide()
 
 # Kill Player on Darkness collision
-func _on_Darkness_DamageArea_PlayerCollision():
-	if !alive:
-		return
-	_die()
+func _on_Darkness_DamageArea_PlayerCollision():	
+	_die(Constants.DARKNESS)
+
+# Kill Player when exiting map bounds
+func _on_VisibilityNotifier2D_screen_exited():
+	_die(Constants.FALL)
 
 # Main Player death function
-func _die():
-	if oxygen <= 0:
+func _die(cause):
+	if alive:
 		alive = false
-		emit_signal("Dead_Suffocate")
-	elif $VisibilityNotifier2D.is_on_screen() == false:
-		alive = false
-		emit_signal("Dead_Fall")
-	else:
-		alive = false
-		emit_signal("Dead")
-
-
-func _on_VisibilityNotifier2D_screen_exited():
-	_die()
+		emit_signal("Dead", cause)
