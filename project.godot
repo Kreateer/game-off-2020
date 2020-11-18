@@ -9,10 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://git_api.gdns"
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://scripts/Character.gd"
 }, {
 "base": "Node",
 "class": "Inventory",
@@ -25,7 +25,7 @@ _global_script_classes=[ {
 "path": "res://scripts/Trader/Item.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": "",
+"Character": "",
 "Inventory": "",
 "Item": ""
 }
@@ -50,7 +50,7 @@ window/stretch/aspect="keep"
 
 [gdnative]
 
-singletons=[ "res://git_api.gdnlib" ]
+singletons=[  ]
 
 [importer_defaults]
 
