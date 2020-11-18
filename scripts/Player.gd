@@ -24,13 +24,16 @@ var origin = Vector2()
 func _ready():
 	screen_size = get_viewport_rect().size # Holds the main screen size
 	origin = self.transform.get_origin()
-	reset()
+	resetPosition()
+	resetAttributes()
 
 # Reset the position of the player to the starting point and 
 # re-initialize all health / oxygen parameters
-func reset():	
+func resetPosition():	
 	self.position.x = origin.x
 	self.position.y = origin.y
+
+func resetAttributes():	
 	health = max_health
 	oxygen = max_oxygen
 	movement_speed = 100
