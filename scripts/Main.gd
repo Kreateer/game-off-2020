@@ -56,16 +56,7 @@ func _on_OxygenTimer_timeout():
 # Once the Player 'dies', show Game Over screen
 func _on_Player_Dead(cause):
 	$CanvasLayer/Score/ScoreTimer.stop()
-	darkness.pause()
-	match cause:
-		Constants.SUFFOCATE:
-			$GUI.suffocate()
-		Constants.FALL:
-			$GUI.fall_off()
-		Constants.DARKNESS:
-			$GUI.show_game_over()
-		Constants.HEALTH:
-			$GUI.show_game_over()
+	darkness.pause()	
 
 func _on_ScoreTimer_timeout():
 	var distance_from_darkness = $Player.position.x - darkness.get_edge_position_x();

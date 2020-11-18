@@ -19,21 +19,6 @@ func game_lose():
 	#get_node("/root/Main/Player/Camera2D/Score").text = str(score)
 #	get_node("/root/Tutorial/CanvasLayer/Score").text = str(score)
 
-# Shows the 'Game Over' screen
-func show_game_over():
-	show_message("Game Over!")
-	$RetryButton.show()
-
-func suffocate():
-	show_message("Game Over!\nYou've Suffocated!")
-	$RetryButton.show()
-
-func fall_off():
-	show_message("Game Over!\nYou've fallen off the map!")
-	$RetryButton.show()
-
-
-
 # Change scene to Tutorial level to start the game
 func _on_StartButton_pressed():
 	$Title.hide()
@@ -67,3 +52,15 @@ func _on_RetryButton_pressed():
 		tutorial.new_game()
 	else:
 		pass
+
+func _on_Player_Dead(cause):
+	match cause:
+		Constants.SUFFOCATE:
+			show_message("Game Over!\nYou've Suffocated!")
+		Constants.FALL:
+			show_message("Game Over!\nYou've fallen off the map!")
+		Constants.DARKNESS:
+			show_message("Game Over!")
+		Constants.HEALTH:
+			show_message("Game Over!")
+	$RetryButton.show()
