@@ -13,12 +13,13 @@ export (int) var jump_speed = -400
 
 var health = max_health
 var max_health = 100
-
 var jumping = false
 var alive = true
 var velocity = Vector2()
-var edge_lvl_r = 5
-var edge_lvl_l = 8
+
+# Edges equals settings limit of Player.camera2D
+var edge_lvl_r = 2856
+var edge_lvl_l = 0
 
 var screen_size # Empty var to hold screen size
 var origin = Vector2()

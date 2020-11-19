@@ -3,7 +3,6 @@ extends Character
 var max_oxygen = 100
 var oxygen = max_oxygen
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size # Holds the main screen size
@@ -88,7 +87,7 @@ func _process(delta):
 	if alive: # Only create velocity when player is alive
 		position += velocity * delta
 		# Clamp Player to screen edge(s), so they don't go off screen
-		position.x = clamp(position.x, edge_lvl_l, screen_size.x - edge_lvl_r)
+		position.x = clamp(position.x, edge_lvl_l, edge_lvl_r)
 
 # Hide pickup on Player body collision
 func _on_PickupItem1_body_entered(body):
