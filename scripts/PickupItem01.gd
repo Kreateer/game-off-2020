@@ -5,7 +5,7 @@ func on_pickup():
 	var main = self.get_parent()
 	for child in main.get_children():
 		if child.name == "Player":
-			child.get_damage(50)
+			child.get_damage(10)
 	pass
 
 
