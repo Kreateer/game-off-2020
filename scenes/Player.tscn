@@ -11,7 +11,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 14.2175
+height = 27.1392
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -20,18 +22,27 @@ __meta__ = {
 }
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2.57813, 2.35938 )
 frames = SubResource( 1 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -6.36396, 4.77297 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0.200989, 2.02002 )
 current = true
-limit_left = 0
-limit_top = 0
-limit_right = 2856
-limit_bottom = 1080
+zoom = Vector2( 0.4, 0.4 )
+process_mode = 0
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 smoothing_enabled = true
-smoothing_speed = 3.0
-editor_draw_limits = true
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
+__meta__ = {
+"_editor_description_": ""
+}
