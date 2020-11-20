@@ -36,10 +36,10 @@ position = Vector2( 518.25, 761.219 )
 scroll_base_scale = Vector2( 0.5, 0.5 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 1800, 0 )
+motion_mirroring = Vector2( 1200, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2( 3, 3 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
 centered = false
-offset = Vector2( 0, 70 )
+offset = Vector2( 0, 150 )
