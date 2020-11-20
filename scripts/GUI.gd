@@ -30,7 +30,7 @@ func _on_StartButton_pressed():
 #			get_tree().change_scene("res://scenes/Tutorial.tscn")
 #		else:
 #			break
-	get_tree().change_scene("res://scenes/Tutorial.tscn")
+	get_tree().change_scene("res://levels/Tutorial.tscn")
 #	for root in get_tree():
 #		if root == "Tutorial":
 #			root.new_game()
