@@ -2,6 +2,10 @@ extends Node2D
 
 var start_score = 0
 var score = start_score
+onready var animation = $TestPickup
+
+func _physics_process(delta):
+	animation.play("default")
 
 func on_pickup():
 	var main = self.get_parent()
@@ -12,6 +16,7 @@ func on_pickup():
 			child.movement_speed = 200
 		else:
 			pass
+	#hide()
 	pass
 
 func on_Timeout():
