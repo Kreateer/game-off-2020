@@ -10,9 +10,6 @@ onready var darkness = get_node("Darkness")
 onready var def_player_position = $Player/StartPosition.position
 onready var player_position = $Player.position
 
-export (Color) var pulse_colo = Color.darkred
-export (bool) var will_pulse = false
-
 
 func _ready():
 	# Set all values to default oxygen value
