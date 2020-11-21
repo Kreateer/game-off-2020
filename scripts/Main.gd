@@ -1,9 +1,11 @@
 extends Node
 
 export (int) var oxygen
+
 var score = 0
-onready var oxygen_bar = get_node("CanvasLayer/Oxygen/OxygenBar")
+onready var oxygen_bar = get_node("CanvasLayer/Oxygen/OxygenAnimation/OxygenBar")
 onready var oxygen_timer = get_node("CanvasLayer/Oxygen/OxygenTimer")
+onready var health_bar = get_node("CanvasLayer/Health/HealthAnimation/HealthBar")
 onready var darkness = get_node("Darkness")
 onready var def_player_position = $Player/StartPosition.position
 onready var player_position = $Player.position
@@ -25,6 +27,7 @@ func _physics_process(delta):
 	# Reduce the oxygen bar value by remaining time
 	# left in the OxygenTimer
 	oxygen_bar.value = oxygen_timer.time_left
+	oxygen_animation()
 
 
 func new_game():
@@ -42,7 +45,9 @@ func new_game():
 	$CanvasLayer/Score.show()
 	$CanvasLayer/PauseScene.show()
 	$Player.resetAttributes()
-	$CanvasLayer/Oxygen.show()	
+	$CanvasLayer/Oxygen.show()
+	$CanvasLayer/Health.show()
+	$CanvasLayer/Health/HealthAnimation.play("100")
 	
 	# Trigger any timers and create hazards
 	darkness.start()
@@ -50,6 +55,14 @@ func new_game():
 	$CanvasLayer/Score/ScoreTimer.start()
 	#$Music.play()
 
+
+func oxygen_animation():
+	if oxygen_timer.time_left <= 50:
+		$CanvasLayer/Oxygen/OxygenAnimation.play("50")
+	elif oxygen_timer.time_left <= 10:
+		$CanvasLayer/Oxygen/OxygenAnimation.play("10")
+	else:
+		$CanvasLayer/Oxygen/OxygenAnimation.stop()
 
 # Once OxygenTimer runs out, the Player's oxygen
 # effectively expires, which kills the Player.

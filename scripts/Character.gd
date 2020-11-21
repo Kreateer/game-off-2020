@@ -6,6 +6,7 @@ This class provides general functionality for beings in the game.
 class_name Character
 
 signal Dead(cause)
+signal Damaged
 
 export (int) var movement_speed = 100
 export (int) var gravity = 1200
@@ -24,14 +25,15 @@ var edge_lvl_l = 0
 var screen_size # Empty var to hold screen size
 var origin = Vector2()
 
-
 func get_damage(amount):
 	if alive:
 		health -= amount
+		emit_signal("Damaged")
 		if health <= 0:
 			_die(Constants.HEALTH)
 		else:
 			print("Damaged {0} points".format([amount]))
+			print("Current health: {0} points".format([health]))
 
 
 # Main death function

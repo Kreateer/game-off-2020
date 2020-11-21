@@ -1,7 +1,11 @@
 extends Character
 
+signal healed
+
 var max_oxygen = 100
 var oxygen = max_oxygen
+onready var animation = get_parent().get_node("CanvasLayer/Health/HealthAnimation")
+onready var hp_bar = get_parent().get_node("CanvasLayer/Health/HealthAnimation/HealthBar")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,6 +13,7 @@ func _ready():
 	origin = self.transform.get_origin()
 	resetPosition()
 	resetAttributes()
+	connect("Damaged", self, "_on_Player_Damage")
 
 
 # Reset the position of the player to the starting point and 
@@ -22,6 +27,8 @@ func resetAttributes():
 	oxygen = max_oxygen
 	movement_speed = 100
 	alive = true
+	hp_bar.max_value = max_health
+	hp_bar.value = health
 
 
 # Main Player movement
@@ -44,17 +51,19 @@ func get_input():
 func player_heal(amount):
 	if health != max_health:
 		health += amount
+		emit_signal("healed")
 		print("Healed {0} points".format([amount]))
 	else:
 		pass
 
 # Sets health value to specific amount
 func set_health(amount):
-	self.health = amount
+	health = amount
 
 # Checks and returns current player health value
 func check_health():
-	return self.health
+	return health
+	
 
 # Main player oxygen function
 func player_oxygen(amount, empty = false):
@@ -100,3 +109,19 @@ func _on_Darkness_DamageArea_PlayerCollision():
 # Kill Player when exiting map bounds
 func _on_VisibilityNotifier2D_screen_exited():
 	_die(Constants.FALL)
+
+
+func _on_Player_Damage():
+	hp_bar.value = health
+	if health >= 100 || (health <= 100 && health > 75):
+		animation.play("100")
+	elif health <= 75 && health > 50:
+		animation.play("75")
+	elif health <= 50 && health > 25:
+		animation.play("50")
+	elif health <= 25 && health > 0:
+		animation.play("25")
+	elif oxygen <= 0:
+		animation.play("Death")
+	else:
+		animation.play("Death")
