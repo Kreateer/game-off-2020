@@ -82,3 +82,6 @@ func _on_ScoreTimer_timeout():
 	var distance_from_darkness = $Player.position.x - darkness.get_edge_position_x();
 	score = score + round((distance_from_darkness / 100) + 1)
 	$CanvasLayer/Score.update_score(score)
+
+func _on_EndCollider_level_cleared():
+	$EndCollider/EndPopup/PopupControl/BasePopup.show()

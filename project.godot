@@ -46,6 +46,7 @@ config/icon="res://pixel_moon.png"
 [autoload]
 
 Constants="*res://scripts/Config/Constants.gd"
+Levels="*res://scripts/Config/Levels.gd"
 
 [display]
 

@@ -13,17 +13,17 @@
 [ext_resource path="res://assets/art/buttons/pause_buttons/pause_exit_clicked.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/buttons/pause_buttons/pause_exit_unclicked.png" type="Texture" id=12]
 
-[sub_resource type="InputEventAction" id=4]
+[sub_resource type="InputEventAction" id=1]
 action = "esc"
 
-[sub_resource type="ShortCut" id=5]
-shortcut = SubResource( 4 )
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
-[sub_resource type="InputEventAction" id=7]
+[sub_resource type="InputEventAction" id=3]
 action = "esc"
 
-[sub_resource type="ShortCut" id=8]
-shortcut = SubResource( 7 )
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
 
 [node name="PauseScene" type="Node2D"]
 script = ExtResource( 2 )
@@ -33,7 +33,7 @@ margin_right = 652.0
 margin_bottom = 646.0
 rect_scale = Vector2( 0.2, 0.2 )
 keep_pressed_outside = true
-shortcut = SubResource( 5 )
+shortcut = SubResource( 2 )
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 7 )
 texture_hover = ExtResource( 6 )
@@ -68,7 +68,7 @@ margin_right = 222.0
 margin_bottom = 59.0
 shortcut_in_tooltip = false
 keep_pressed_outside = true
-shortcut = SubResource( 8 )
+shortcut = SubResource( 4 )
 texture_normal = ExtResource( 1 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 10 )
