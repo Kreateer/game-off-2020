@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=2]
+[gd_scene load_steps=149 format=2]
 
 [ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/FFFFORWA.tres" type="DynamicFont" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/PickupItem02.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/PickupItem05.tscn" type="PackedScene" id=15]
-[ext_resource path="res://assets/art/parallax/tmp_background.jpg" type="Texture" id=16]
 [ext_resource path="res://assets/art/player_interface/health_bar/Luna_HealthBar_100_1.png" type="Texture" id=16]
 [ext_resource path="res://assets/art/player_interface/health_bar/Luna_HealthBar_75_1.png" type="Texture" id=17]
 [ext_resource path="res://assets/art/player_interface/health_bar/Luna_HealthBar_25_1.png" type="Texture" id=18]
@@ -23,6 +22,7 @@
 [ext_resource path="res://assets/art/player_interface/health_bar/Luna_HealthBar_Death_1.png" type="Texture" id=20]
 [ext_resource path="res://assets/art/player_interface/oxygen_bar/Luna_OxygenBar_10.png" type="Texture" id=21]
 [ext_resource path="res://assets/art/player_interface/oxygen_bar/Luna_OxygenBar_50.png" type="Texture" id=22]
+[ext_resource path="res://assets/art/parallax/tmp_background.jpg" type="Texture" id=23]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 22 )
@@ -738,11 +738,11 @@ position = Vector2( 1166.66, 952 )
 motion_mirroring = Vector2( 1009, 0 )
 
 [node name="tmp_background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+pause_mode = 1
 position = Vector2( 564, 150 )
 scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 16 )
+texture = ExtResource( 23 )
 offset = Vector2( 0, 768 )
-pause_mode = 1
 [connection signal="Dead" from="Player" to="GUI" method="_on_Player_Dead"]
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 [connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
