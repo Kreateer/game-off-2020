@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://assets/art/LunaRun_MainMenu_Background_1.png" type="Texture" id=1]
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/art/black.png" type="Texture" id=10]
 
 [node name="Main" type="Node"]
 
@@ -10,10 +10,10 @@
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="TEMP BACKGROUND" type="Sprite" parent="."]
-modulate = Color( 0.774414, 0.142178, 0.142178, 1 )
-position = Vector2( 960, 544 )
+self_modulate = Color( 0.382813, 0.382813, 0.382813, 1 )
+position = Vector2( 960, 540 )
 z_index = -100
-texture = ExtResource( 10 )
+texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1920, 1080 )
 __meta__ = {
