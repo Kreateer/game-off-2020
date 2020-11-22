@@ -673,6 +673,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2( 1, 1 )
+
+[node name="TEMP BACKGROUND" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.774414, 0.142178, 0.142178, 1 )
+position = Vector2( 960, 544 )
+z_index = -100
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1920, 1080 )
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="Item1" parent="." groups=[
@@ -688,17 +704,6 @@ pause_mode = 1
 position = Vector2( 704, 936 )
 
 [node name="Darkness" parent="." instance=ExtResource( 9 )]
-
-[node name="TEMP BACKGROUND" type="Sprite" parent="."]
-modulate = Color( 0.774414, 0.142178, 0.142178, 1 )
-position = Vector2( 960, 544 )
-z_index = -100
-texture = ExtResource( 4 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 1920, 1080 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]
 
@@ -730,8 +735,8 @@ position = Vector2( 1005.25, 853.75 )
 ] instance=ExtResource( 15 )]
 pause_mode = 1
 position = Vector2( 1167.66, 949.25 )
-[connection signal="Dead" from="Player" to="GUI" method="_on_Player_Dead"]
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
+[connection signal="Dead" from="Player" to="GUI" method="_on_Player_Dead"]
 [connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="CanvasLayer/Score/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Oxygen/OxygenTimer" to="." method="_on_OxygenTimer_timeout"]
