@@ -32,22 +32,10 @@ extra_spacing_top = 8
 font_data = SubResource( 7 )
 
 [node name="EndPopup" type="CanvasLayer"]
+pause_mode = 1
+
+[node name="BasePopup" type="Popup" parent="."]
 pause_mode = 2
-
-[node name="PopupControl" type="Control" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BasePopup" type="Popup" parent="PopupControl"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -61,7 +49,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Continue" type="Button" parent="PopupControl/BasePopup"]
+[node name="Continue" type="Button" parent="BasePopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -80,7 +68,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Exit" type="Button" parent="PopupControl/BasePopup"]
+[node name="Exit" type="Button" parent="BasePopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -99,7 +87,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="LevelComplete" type="Label" parent="PopupControl/BasePopup"]
+[node name="LevelComplete" type="Label" parent="BasePopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -114,7 +102,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FinalScore" type="Label" parent="PopupControl/BasePopup"]
+[node name="FinalScore" type="Label" parent="BasePopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -129,7 +117,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreNumber" type="Label" parent="PopupControl/BasePopup"]
+[node name="ScoreNumber" type="Label" parent="BasePopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -143,5 +131,5 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
-[connection signal="pressed" from="PopupControl/BasePopup/Continue" to="PopupControl/BasePopup" method="_on_Continue_pressed"]
-[connection signal="pressed" from="PopupControl/BasePopup/Exit" to="PopupControl/BasePopup" method="_on_Exit_pressed"]
+[connection signal="pressed" from="BasePopup/Continue" to="BasePopup" method="_on_Continue_pressed"]
+[connection signal="pressed" from="BasePopup/Exit" to="BasePopup" method="_on_Exit_pressed"]

@@ -84,4 +84,4 @@ func _on_ScoreTimer_timeout():
 	$CanvasLayer/Score.update_score(score)
 
 func _on_EndCollider_level_cleared():
-	$EndCollider/EndPopup/PopupControl/BasePopup.show()
+	$EndPopup/BasePopup.show()

@@ -95,25 +95,20 @@ position = Vector2( 960, 540 )
 scale = Vector2( 60, 33.75 )
 texture = ExtResource( 4 )
 
-[node name="EndCollider" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2856, 625 )
+[node name="EndPopup" parent="." instance=ExtResource( 5 )]
 
-[node name="EndArea" parent="EndCollider" index="0"]
-position = Vector2( 71.9999, 263 )
-
-[node name="EndPopup" parent="EndCollider" instance=ExtResource( 5 )]
+[node name="EndCollider" parent="EndPopup" instance=ExtResource( 2 )]
+position = Vector2( 1904, 888 )
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 [connection signal="Dead" from="Player" to="GUI" method="_on_Player_Dead"]
 [connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="CanvasLayer/Score/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Oxygen/OxygenTimer" to="." method="_on_OxygenTimer_timeout"]
 [connection signal="DamageArea_PlayerCollision" from="Darkness" to="Player" method="_on_Darkness_DamageArea_PlayerCollision"]
-[connection signal="level_cleared" from="EndCollider" to="." method="_on_EndCollider_level_cleared"]
+[connection signal="level_cleared" from="EndPopup/EndCollider" to="." method="_on_EndCollider_level_cleared"]
 
 [editable path="CanvasLayer"]
 
 [editable path="GUI"]
 
-[editable path="EndCollider"]
-
-[editable path="EndCollider/EndPopup"]
+[editable path="EndPopup"]

@@ -2,12 +2,17 @@ extends Node2D
 
 signal level_cleared
 
-func _on_EndArea_body_entered(KinematicBody2D):
+func on_collide():
 	# Pause Game And Show Level End Popup
+	var EndPopup = get_parent().get_parent().get_node("EndPopup/BasePopup")
+	var EndScore = get_parent().get_parent().get_node("EndPopup/BasePopup/ScoreNumber")
 	get_tree().paused = true
-	emit_signal("level_cleared")
-	$EndPopup/PopupControl/BasePopup.show()
-	var main = self.get_parent()
+	EndPopup.show()
+	var main = self.get_parent().get_parent()
 	for child in main.get_children():
 		if child.name == "CanvasLayer":
-				$EndPopup/PopupControl/BasePopup/ScoreNumber.text = child.get_child(0).text
+				EndScore.text = child.get_child(0).text
+
+func _on_EndArea_body_entered(KinematicBody2D):
+	on_collide()
+	emit_signal("level_cleared")
