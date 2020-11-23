@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://assets/art/buttons/exit_button_hover_frames/exit_button_hover10.png" type="Texture" id=1]
 [ext_resource path="res://scripts/GUI.gd" type="Script" id=2]
@@ -160,11 +160,22 @@ frame_10/delay_sec = 0.0
 frame_11/texture = ExtResource( 4 )
 frame_11/delay_sec = 0.0
 
-[sub_resource type="DynamicFontData" id=5]
-font_path = "res://assets/fonts/FFFFORWA.TTF"
-
-[sub_resource type="DynamicFont" id=6]
-font_data = SubResource( 5 )
+[sub_resource type="Animation" id=5]
+resource_name = "TextBobble"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 961.896, 479.573 ), Vector2( 961.896, 500 ), Vector2( 961.896, 479.573 ) ]
+}
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -237,7 +248,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/TextBobble = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="AnimationPlayer"]
 position = Vector2( 961.896, 479.573 )
 texture = ExtResource( 33 )
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

@@ -2,6 +2,11 @@ extends CanvasLayer
 
 signal game_start
 
+onready var title_anim = $AnimationPlayer
+
+func _process(delta):
+	title_anim.play("TextBobble")
+
 func show_message(text):
 	$Title.text = text
 	$Title.show()
