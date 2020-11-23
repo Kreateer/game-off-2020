@@ -38,8 +38,6 @@ tile_data = PoolIntArray( 1835038, 0, 0, 1835039, 0, 0, 1835040, 0, 0, 1900567, 
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 1 )]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
 [node name="Item1" parent="." groups=[
 "Pickups",
 ] instance=ExtResource( 11 )]
@@ -62,7 +60,7 @@ visible = false
 [node name="ExitButton" parent="GUI" index="2"]
 visible = false
 
-[node name="Sprite" parent="GUI" index="4"]
+[node name="GameTitle" parent="GUI/TitleAnimation" index="0"]
 visible = false
 
 [node name="Item3" parent="." groups=[
@@ -99,8 +97,8 @@ texture = ExtResource( 4 )
 
 [node name="EndCollider" parent="EndPopup" instance=ExtResource( 2 )]
 position = Vector2( 1904, 888 )
-[connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 [connection signal="Dead" from="Player" to="GUI" method="_on_Player_Dead"]
+[connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 [connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="CanvasLayer/Score/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Oxygen/OxygenTimer" to="." method="_on_OxygenTimer_timeout"]
