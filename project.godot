@@ -41,11 +41,16 @@ _global_script_class_icons={
 config/name="LunaRun"
 config/description="A 2D runner/platformer game project for Game Off 2020 game jam."
 run/main_scene="res://scenes/Main.tscn"
+boot_splash/image="res://assets/art/Basic_Loading_Screen.png"
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://pixel_moon.png"
 
 [autoload]
 
 Constants="*res://scripts/Config/Constants.gd"
+Levels="*res://scripts/Config/Levels.gd"
+SceneLoader="*res://scripts/Config/SceneLoader.gd"
+MusicController="*res://scenes/MusicController.tscn"
 
 [display]
 

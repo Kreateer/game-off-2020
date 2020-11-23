@@ -13,6 +13,19 @@ func game_win():
 func game_lose():
 	pass
 
+func _ready():
+	MusicController.play_music("MainTheme")
+
+func _process(delta):
+	var current_scene = get_tree().current_scene
+	if current_scene.name != "Main":
+		$TitleAnimation.stop()
+		$TitleAnimation/GameTitle.hide()
+		MusicController.stop_music()
+	else:
+		$TitleAnimation.play("TitleBob")
+		$TitleAnimation/GameTitle.show()
+
 # Updates the Score label for the Player
 #func update_score(score):
 	#get_node("/root/Main/Player/Camera2D/Score").text = str(score)
@@ -21,16 +34,23 @@ func game_lose():
 
 # Change scene to Tutorial level to start the game
 func _on_StartButton_pressed():
-	$Title.hide()
 	$StartButton.hide()
 	$ExitButton.hide()
+	$TitleAnimation.stop()
+	$TitleAnimation/GameTitle.hide()
 	emit_signal("game_start")
 #	for root in get_tree():
 #		if root == "Main":
 #			get_tree().change_scene("res://scenes/Tutorial.tscn")
 #		else:
 #			break
+	
+	$LoadingScreen.show()
+	yield(get_tree().create_timer(3), "timeout")
+	$LoadingScreen.hide()
+	
 	get_tree().change_scene("res://levels/Tutorial.tscn")
+	#SceneLoader.goto_scene("res://levels/Tutorial.tscn")
 #	for root in get_tree():
 #		if root == "Tutorial":
 #			root.new_game()

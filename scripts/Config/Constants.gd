@@ -6,3 +6,6 @@ const SUFFOCATE = "Suffocate"
 const DARKNESS = "Darkness"
 const HEALTH = "Health"
 const FALL = "Fall"
+# Scene and level paths
+const SCENE_PATH = "res://scenes/"
+const LEVEL_PATH = "res://levels/"

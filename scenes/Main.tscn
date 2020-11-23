@@ -7,8 +7,6 @@
 
 [node name="GUI" parent="." instance=ExtResource( 4 )]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
 [node name="TEMP BACKGROUND" type="Sprite" parent="."]
 self_modulate = Color( 0.382813, 0.382813, 0.382813, 1 )
 position = Vector2( 960, 540 )
