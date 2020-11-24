@@ -53,7 +53,6 @@ pause_mode = 1
 position = Vector2( 909.25, 950.5 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 1, 1 )
 
