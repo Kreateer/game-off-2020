@@ -36,6 +36,7 @@ func new_game():
 	darkness.reset()
 	$Player.resetPosition()
 	get_tree().call_group("Resettable Pickups", "reset")
+	$GUI/FadeIn.play("FadeIn")
 	yield(get_tree().create_timer(0.5), "timeout")
 	$Player.show()
 
@@ -48,12 +49,12 @@ func new_game():
 	$CanvasLayer/Oxygen.show()
 	$CanvasLayer/Health.show()
 	$CanvasLayer/Health/HealthAnimation.play("100")
+	get_tree().call_group("MovementKeys", "play")
 	
 	# Trigger any timers and create hazards
 	darkness.start()
 	oxygen_timer.start()
 	$CanvasLayer/Score/ScoreTimer.start()
-	#$Music.play()
 
 
 func oxygen_animation():

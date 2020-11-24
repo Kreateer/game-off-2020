@@ -2,6 +2,8 @@ extends CanvasLayer
 
 signal game_start
 
+onready var tree = get_tree()
+
 func show_message(text):
 	$Title.text = text
 	$Title.show()
@@ -17,7 +19,7 @@ func _ready():
 	MusicController.play_music("MainTheme")
 
 func _process(delta):
-	var current_scene = get_tree().current_scene
+	var current_scene = tree.current_scene
 	if current_scene.name != "Main":
 		$TitleAnimation.stop()
 		$TitleAnimation/GameTitle.hide()
@@ -46,10 +48,10 @@ func _on_StartButton_pressed():
 #			break
 	
 	$LoadingScreen.show()
-	yield(get_tree().create_timer(3), "timeout")
+	yield(tree.create_timer(3), "timeout")
 	$LoadingScreen.hide()
 	
-	get_tree().change_scene("res://levels/Tutorial.tscn")
+	tree.change_scene("res://levels/Tutorial.tscn")
 	#SceneLoader.goto_scene("res://levels/Tutorial.tscn")
 #	for root in get_tree():
 #		if root == "Tutorial":
@@ -60,12 +62,12 @@ func _on_StartButton_pressed():
 # When the Exit button is pressed, the game closes.
 # This will NOT save player progression.
 func _on_ExitButton_pressed():
-	get_tree().quit()
+	tree.quit()
 
 # Hide 'Game Over' screen and reset progress to start of level
 func _on_RetryButton_pressed():
 	$Title.hide()
-	$RetryButton.hide()
+	tree.call_group("DeathButtons", "hide")
 	emit_signal("game_start")
 	var tutorial = self.get_parent()
 	if tutorial.name == "Tutorial":
@@ -83,4 +85,9 @@ func _on_Player_Dead(cause):
 			show_message("Game Over!")
 		Constants.HEALTH:
 			show_message("Game Over!")
-	$RetryButton.show()
+	tree.call_group("DeathButtons", "show")
+	$FadeIn/OverlayPanel.show()
+	$FadeIn.play("FadeOut")
+
+func _on_DeathExitButton_pressed():
+	tree.quit()

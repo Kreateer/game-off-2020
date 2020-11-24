@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scenes/PlayerHUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/EndCollider.tscn" type="PackedScene" id=2]
@@ -14,6 +14,99 @@
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/PickupItem02.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/PickupItem05.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/art/buttons/mouse_keyboard_buttons/Keyboard_A_Button.png" type="Texture" id=16]
+[ext_resource path="res://assets/art/buttons/mouse_keyboard_buttons/Keyboard_D_Button.png" type="Texture" id=17]
+[ext_resource path="res://assets/art/buttons/mouse_keyboard_buttons/Keyboard_W_Button.png" type="Texture" id=18]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 16 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 16 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 16 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 16 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "keyboardA",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 18 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 18 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 18 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "keyboardW",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 17 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 17 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 17 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 17 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "keyboardD",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=19]
+font_path = "res://assets/fonts/FFFFORWA.TTF"
+
+[sub_resource type="DynamicFont" id=20]
+font_data = SubResource( 19 )
 
 [node name="Tutorial" type="Node"]
 script = ExtResource( 12 )
@@ -54,10 +147,10 @@ position = Vector2( 704, 936 )
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]
 
-[node name="StartButton" parent="GUI" index="1"]
+[node name="StartButton" parent="GUI" index="0"]
 visible = false
 
-[node name="ExitButton" parent="GUI" index="2"]
+[node name="ExitButton" parent="GUI" index="1"]
 visible = false
 
 [node name="GameTitle" parent="GUI/TitleAnimation" index="0"]
@@ -97,8 +190,46 @@ texture = ExtResource( 4 )
 
 [node name="EndCollider" parent="EndPopup" instance=ExtResource( 2 )]
 position = Vector2( 1904, 888 )
-[connection signal="Dead" from="Player" to="GUI" method="_on_Player_Dead"]
+
+[node name="KeyboardA" type="AnimatedSprite" parent="." groups=[
+"MovementKeys",
+]]
+pause_mode = 1
+position = Vector2( 305, 815 )
+frames = SubResource( 6 )
+animation = "keyboardA"
+
+[node name="KeyboardW" type="AnimatedSprite" parent="." groups=[
+"MovementKeys",
+]]
+pause_mode = 1
+position = Vector2( 337, 783 )
+frames = SubResource( 12 )
+animation = "keyboardW"
+
+[node name="KeyboardD" type="AnimatedSprite" parent="." groups=[
+"MovementKeys",
+]]
+pause_mode = 1
+position = Vector2( 369, 815 )
+frames = SubResource( 18 )
+animation = "keyboardD"
+
+[node name="Movement" type="Label" parent="."]
+pause_mode = 1
+margin_left = 153.0
+margin_top = 791.0
+margin_right = 269.0
+margin_bottom = 813.0
+custom_fonts/font = SubResource( 20 )
+text = "Movement:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
+[connection signal="Dead" from="Player" to="GUI" method="_on_Player_Dead"]
 [connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="CanvasLayer/Score/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Oxygen/OxygenTimer" to="." method="_on_OxygenTimer_timeout"]
