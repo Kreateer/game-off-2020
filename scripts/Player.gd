@@ -41,11 +41,17 @@ func get_input():
 	if jump and is_on_floor():
 		jumping = true
 		velocity.y = jump_speed
-	if right:
+		$Sprite.play("Jump")
+	
+	elif right:
 		velocity.x += movement_speed
-	if left:
+		$Sprite.play("WalkRight")
+	elif left:
 		velocity.x -= movement_speed
+		$Sprite.play("WalkLeft")
 
+	else:
+		$Sprite.play("Idle")
 
 # Main player heal function
 func player_heal(amount):
@@ -93,10 +99,13 @@ func _physics_process(delta):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# Re-clamp camera when levels are done!
+	
 	if alive: # Only create velocity when player is alive
 		position += velocity * delta
+		
 		# Clamp Player to screen edge(s), so they don't go off screen
-		position.x = clamp(position.x, edge_lvl_l, edge_lvl_r)
+		#position.x = clamp(position.x, edge_lvl_l, edge_lvl_r)
 
 # Hide pickup on Player body collision
 func _on_PickupItem1_body_entered(body):

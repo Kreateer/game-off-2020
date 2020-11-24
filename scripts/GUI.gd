@@ -65,7 +65,7 @@ func _on_ExitButton_pressed():
 # Hide 'Game Over' screen and reset progress to start of level
 func _on_RetryButton_pressed():
 	$Title.hide()
-	$RetryButton.hide()
+	get_tree().call_group("DeathButtons", "hide")
 	emit_signal("game_start")
 	var tutorial = self.get_parent()
 	if tutorial.name == "Tutorial":
@@ -83,4 +83,9 @@ func _on_Player_Dead(cause):
 			show_message("Game Over!")
 		Constants.HEALTH:
 			show_message("Game Over!")
-	$RetryButton.show()
+	get_tree().call_group("DeathButtons", "show")
+	$FadeIn/OverlayPanel.show()
+	$FadeIn.play("FadeOut")
+
+func _on_DeathExitButton_pressed():
+	get_tree().quit()
