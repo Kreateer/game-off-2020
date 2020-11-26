@@ -30,28 +30,39 @@ func resetAttributes():
 	hp_bar.max_value = max_health
 	hp_bar.value = health
 
+func animate_movement(moving, moveRight):
+	if moving:
+		$Sprite.play("Walk")
+		if moveRight:
+			$Sprite.flip_h = false
+		else:
+			$Sprite.flip_h = true
+	
+	else:
+		$Sprite.play("Idle")
+
 
 # Main Player movement
 func get_input():
 	velocity.x = 0
 	var right = Input.is_action_pressed("right")
 	var left = Input.is_action_pressed("left")
-	var jump = Input.is_action_pressed("jump")
+	var jump = Input.is_action_just_pressed("jump")
 	
 	if jump and is_on_floor():
 		jumping = true
 		velocity.y = jump_speed
 		$Sprite.play("Jump")
 	
-	elif right:
+	if right:
 		velocity.x += movement_speed
-		$Sprite.play("WalkRight")
-	elif left:
+		animate_movement(true, true)
+	if left:
 		velocity.x -= movement_speed
-		$Sprite.play("WalkLeft")
+		animate_movement(true, false)
 
-	else:
-		$Sprite.play("Idle")
+	if not jump && not right && not left:	
+		animate_movement(false, true)
 
 # Main player heal function
 func player_heal(amount):
