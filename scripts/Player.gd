@@ -123,7 +123,13 @@ func _on_PickupItem1_body_entered(body):
 	hide()
 
 # Kill Player on Darkness collision
-func _on_Darkness_DamageArea_PlayerCollision():	
+func _on_Darkness_DamageArea_PlayerCollision():
+	self.PAUSE_MODE_PROCESS
+	if $Sprite.flip_h == true:
+		$Sprite.flip_h = false
+		$Sprite.play("DarkDeath")
+	if $Sprite.is_playing() == false:
+		$Sprite.hide()
 	_die(Constants.DARKNESS)
 
 # Kill Player when exiting map bounds

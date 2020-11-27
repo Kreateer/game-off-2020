@@ -76,6 +76,7 @@ func _on_RetryButton_pressed():
 		pass
 
 func _on_Player_Dead(cause):
+	yield(tree.create_timer(2), "timeout")
 	match cause:
 		Constants.SUFFOCATE:
 			show_message("Game Over!\nYou've Suffocated!")
@@ -85,6 +86,7 @@ func _on_Player_Dead(cause):
 			show_message("Game Over!")
 		Constants.HEALTH:
 			show_message("Game Over!")
+	
 	tree.call_group("DeathButtons", "show")
 	$FadeIn/OverlayPanel.show()
 	$FadeIn.play("FadeOut")

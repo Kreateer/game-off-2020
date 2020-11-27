@@ -36,9 +36,9 @@ func new_game():
 	darkness.reset()
 	$Player.resetPosition()
 	get_tree().call_group("Resettable Pickups", "reset")
-	$GUI/FadeIn.play("FadeIn")
+	$Player/Sprite.animation = "Idle"
 	yield(get_tree().create_timer(0.5), "timeout")
-	$Player.show()
+	
 
 	# With a clean game state, reset the UI, timers and any event handlers
 	score = 0
@@ -55,6 +55,8 @@ func new_game():
 	darkness.start()
 	oxygen_timer.start()
 	$CanvasLayer/Score/ScoreTimer.start()
+	$Player.show()
+	$GUI/FadeIn.play("FadeIn")
 
 
 func oxygen_animation():
@@ -75,6 +77,11 @@ func _on_OxygenTimer_timeout():
 func _on_Player_Dead(cause):
 	$CanvasLayer/Score/ScoreTimer.stop()
 	darkness.pause()
+	$CanvasLayer/Health/HealthAnimation/HealthBar.value = 0
+	$CanvasLayer/Oxygen/OxygenAnimation.play("10")
+	$CanvasLayer/Oxygen/OxygenTimer.stop()
+	$CanvasLayer/Oxygen/OxygenAnimation/OxygenBar.value = 0
+	$CanvasLayer/Health/HealthAnimation.play("Death")
 
 
 # On each tick of the ScoreTimer, evaluate 1 tick worth of score and update

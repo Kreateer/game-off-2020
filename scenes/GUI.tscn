@@ -53,7 +53,7 @@
 [ext_resource path="res://assets/art/buttons/exit_button_hover_frames/exit_button_hover08.png" type="Texture" id=51]
 [ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=52]
 
-[sub_resource type="AnimatedTexture" id=2]
+[sub_resource type="AnimatedTexture" id=1]
 frames = 12
 fps = 12.0
 frame_0/texture = ExtResource( 32 )
@@ -80,7 +80,7 @@ frame_10/delay_sec = 0.0
 frame_11/texture = ExtResource( 28 )
 frame_11/delay_sec = 0.0
 
-[sub_resource type="AnimatedTexture" id=3]
+[sub_resource type="AnimatedTexture" id=2]
 frames = 12
 fps = 12.0
 frame_0/texture = ExtResource( 23 )
@@ -107,7 +107,7 @@ frame_10/delay_sec = 0.0
 frame_11/texture = ExtResource( 8 )
 frame_11/delay_sec = 0.0
 
-[sub_resource type="AnimatedTexture" id=4]
+[sub_resource type="AnimatedTexture" id=3]
 frames = 12
 fps = 12.0
 frame_0/texture = ExtResource( 25 )
@@ -134,7 +134,7 @@ frame_10/delay_sec = 0.0
 frame_11/texture = ExtResource( 24 )
 frame_11/delay_sec = 0.0
 
-[sub_resource type="AnimatedTexture" id=5]
+[sub_resource type="AnimatedTexture" id=4]
 frames = 12
 fps = 12.0
 frame_0/texture = ExtResource( 16 )
@@ -161,7 +161,7 @@ frame_10/delay_sec = 0.0
 frame_11/texture = ExtResource( 4 )
 frame_11/delay_sec = 0.0
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "FadeIn"
 tracks/0/type = "value"
 tracks/0/path = NodePath("FadeIn/OverlayPanel:self_modulate")
@@ -176,7 +176,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=6]
 resource_name = "FadeOut"
 length = 0.5
 tracks/0/type = "value"
@@ -192,25 +192,25 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 52 )
 
-[sub_resource type="DynamicFontData" id=6]
+[sub_resource type="DynamicFontData" id=9]
 font_path = "res://assets/fonts/FFFFORWA.TTF"
 
-[sub_resource type="DynamicFont" id=7]
-font_data = SubResource( 6 )
+[sub_resource type="DynamicFont" id=10]
+font_data = SubResource( 9 )
 
-[sub_resource type="DynamicFontData" id=12]
+[sub_resource type="DynamicFontData" id=11]
 font_path = "res://assets/fonts/FFFFORWA.TTF"
 
-[sub_resource type="DynamicFont" id=13]
-font_data = SubResource( 12 )
+[sub_resource type="DynamicFont" id=12]
+font_data = SubResource( 11 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=13]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("TitleAnimation/GameTitle:position")
@@ -238,8 +238,8 @@ margin_top = -36.0
 margin_right = 192.0
 margin_bottom = 284.0
 rect_scale = Vector2( 0.8, 0.8 )
-texture_normal = SubResource( 2 )
-texture_hover = SubResource( 3 )
+texture_normal = SubResource( 1 )
+texture_hover = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -255,22 +255,22 @@ margin_top = 148.0
 margin_right = 200.0
 margin_bottom = 468.0
 rect_scale = Vector2( 0.7, 0.7 )
-texture_normal = SubResource( 4 )
-texture_hover = SubResource( 5 )
+texture_normal = SubResource( 3 )
+texture_hover = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="FadeIn" type="AnimationPlayer" parent="."]
-anims/FadeIn = SubResource( 9 )
-anims/FadeOut = SubResource( 11 )
+anims/FadeIn = SubResource( 5 )
+anims/FadeOut = SubResource( 6 )
 
 [node name="OverlayPanel" type="Panel" parent="FadeIn"]
 visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
-custom_styles/panel = SubResource( 10 )
+custom_styles/panel = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -285,7 +285,7 @@ margin_left = -103.5
 margin_top = -52.5
 margin_right = 103.5
 margin_bottom = 70.5
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 8 )
 align = 1
 valign = 1
 autowrap = true
@@ -305,7 +305,7 @@ margin_left = -78.0
 margin_top = 70.0
 margin_right = 78.0
 margin_bottom = 138.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 10 )
 text = "Retry"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -323,7 +323,7 @@ margin_left = -78.0
 margin_top = 149.0
 margin_right = 78.0
 margin_bottom = 217.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 12 )
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -331,7 +331,7 @@ __meta__ = {
 }
 
 [node name="TitleAnimation" type="AnimationPlayer" parent="."]
-anims/TitleBob = SubResource( 8 )
+anims/TitleBob = SubResource( 13 )
 
 [node name="GameTitle" type="Sprite" parent="TitleAnimation"]
 position = Vector2( 961.896, 479.573 )
