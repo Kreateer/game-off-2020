@@ -20,13 +20,13 @@ func _ready():
 
 func _process(delta):
 	var current_scene = tree.current_scene
-	if current_scene.name != "Main":
-		$TitleAnimation.stop()
-		$TitleAnimation/GameTitle.hide()
-		MusicController.stop_music()
-	else:
+	if current_scene.name == "Main":
 		$TitleAnimation.play("TitleBob")
 		$TitleAnimation/GameTitle.show()
+	
+	else:
+		$TitleAnimation.stop()
+		$TitleAnimation/GameTitle.hide()
 
 # Updates the Score label for the Player
 #func update_score(score):
@@ -41,12 +41,14 @@ func _on_StartButton_pressed():
 	$TitleAnimation.stop()
 	$TitleAnimation/GameTitle.hide()
 	emit_signal("game_start")
+	
+	
 #	for root in get_tree():
 #		if root == "Main":
 #			get_tree().change_scene("res://scenes/Tutorial.tscn")
 #		else:
 #			break
-	
+	MusicController.stop_music()
 	$LoadingScreen.show()
 	yield(tree.create_timer(3), "timeout")
 	$LoadingScreen.hide()

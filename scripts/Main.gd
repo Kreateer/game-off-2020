@@ -17,10 +17,7 @@ func _ready():
 	oxygen_bar.value = oxygen
 	oxygen_timer.wait_time = oxygen
 	new_game()
-
-
-#func _process(delta):
-#	pass
+	call_music()
 
 
 func _physics_process(delta):
@@ -28,6 +25,9 @@ func _physics_process(delta):
 	# left in the OxygenTimer
 	oxygen_bar.value = oxygen_timer.time_left
 	oxygen_animation()
+
+func call_music():
+	Levels.current_level("Tutorial")
 
 
 func new_game():
