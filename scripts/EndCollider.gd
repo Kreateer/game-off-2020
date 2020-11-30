@@ -8,6 +8,8 @@ func on_collide():
 	var EndScore = get_parent().get_parent().get_node("EndPopup/BasePopup/ScoreNumber")
 	get_tree().paused = true
 	EndPopup.show()
+	get_parent().get_parent().get_node("GUI/FadeIn/OverlayPanel").show()
+	get_parent().get_parent().get_node("GUI/FadeIn").play("FadeOut")
 	var main = self.get_parent().get_parent()
 	for child in main.get_children():
 		if child.name == "CanvasLayer":

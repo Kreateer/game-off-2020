@@ -20,6 +20,8 @@ func _ready():
 # re-initialize all health / oxygen parameters
 func resetPosition():
 	self.position = origin
+	$Camera2D.position.x = 0.201
+	$Camera2D.position.y = 2.02
 
 
 func resetAttributes():	
@@ -134,7 +136,13 @@ func _on_Darkness_DamageArea_PlayerCollision():
 
 # Kill Player when exiting map bounds
 func _on_VisibilityNotifier2D_screen_exited():
-	_die(Constants.FALL)
+	if $VisibilityNotifier2D.visible:
+		if self.position.y >= -750:
+			_die(Constants.FALL)
+		else:
+			pass
+	else:
+		pass
 
 
 func _on_Player_Damage():
@@ -151,3 +159,7 @@ func _on_Player_Damage():
 		animation.play("Death")
 	else:
 		animation.play("Death")
+
+
+func _on_TileMap_collision():
+	pass # Replace with function body.

@@ -16,6 +16,7 @@ func _ready():
 	oxygen_bar.max_value = oxygen
 	oxygen_bar.value = oxygen
 	oxygen_timer.wait_time = oxygen
+	get_tree().call_group("Levels", "")
 	new_game()
 	call_music()
 
@@ -55,7 +56,7 @@ func new_game():
 	darkness.start()
 	oxygen_timer.start()
 	$CanvasLayer/Score/ScoreTimer.start()
-	$Player.show()
+	$Player/VisibilityNotifier2D.show()
 	$GUI/FadeIn.play("FadeIn")
 
 
@@ -93,3 +94,50 @@ func _on_ScoreTimer_timeout():
 
 func _on_EndCollider_level_cleared():
 	$EndPopup/BasePopup.show()
+
+func _on_BasePopup_switch_tiles(tilemap):
+	
+	if tilemap == "Level1":
+		$GUI/FadeIn.play("FadeOut")
+		$Player/VisibilityNotifier2D.hide()
+#		$EndPopup/BasePopup.hide()
+		$Level1.collision_layer = 1
+		$Level1.collision_mask = 1
+		$Level1.show()
+		$TileMap.hide(); $TileMap.queue_free()
+		get_tree().call_group("MovementKeys", "stop")
+		get_tree().call_group("MovementKeys", "hide")
+		get_tree().call_group("LevelLabels", "hide")
+		
+		$Item3.position.x = 674; $Item3.position.y = 903
+		$Item4.position.x = 1297; $Item4.position.y = 870
+		$Item5.position.x = 2006; $Item5.position.y = 855
+		
+		$EndPopup/EndCollider.position.x = 3816; $EndPopup/EndCollider.position.y = 662
+		
+		yield(get_tree().create_timer(2), "timeout")
+		
+		new_game()
+		
+		#yield(get_tree().create_timer(2), "timeout")
+		#$GUI/FadeIn.play("FadeIn")
+	
+	if tilemap == "Level2":
+		$Level2.show()
+		$Level1.hide(); $Level1.queue_free()
+
+	if tilemap == "Level3":
+		$Level3.show()
+		$Level2.hide(); $Level2.queue_free()
+	
+	if tilemap == "Level4":
+		$Level4.show()
+		$Level3.hide(); $Level3.queue_free()
+	
+	if tilemap == "Level5":
+		$Level5.show()
+		$Level4.hide(); $Level4.queue_free()
+	
+	if tilemap == "Level6":
+		$Level6.show()
+		$Level5.hide(); $Level5.queue_free()

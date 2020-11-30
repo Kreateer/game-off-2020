@@ -63,7 +63,7 @@ region = Rect2( 320, 960, 320, 320 )
 atlas = ExtResource( 1 )
 region = Rect2( 640, 960, 320, 320 )
 
-[sub_resource type="SpriteFrames" id=17]
+[sub_resource type="SpriteFrames" id=16]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
@@ -71,7 +71,7 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=18]
+[sub_resource type="CapsuleShape2D" id=17]
 radius = 66.7305
 
 [node name="Item3" type="Node2D"]
@@ -79,13 +79,13 @@ script = ExtResource( 2 )
 
 [node name="TestPickup" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.4, 0.4 )
-frames = SubResource( 17 )
+frames = SubResource( 16 )
 
 [node name="PickupArea3" type="Area2D" parent="TestPickup"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestPickup/PickupArea3"]
 position = Vector2( -2.15817, 29.946 )
-shape = SubResource( 18 )
+shape = SubResource( 17 )
 
 [node name="DurationTimer" type="Timer" parent="."]
 one_shot = true

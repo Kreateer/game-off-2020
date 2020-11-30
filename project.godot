@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://scripts/Trader/Item.gd"
+}, {
+"base": "TileMap",
+"class": "TileMapController",
+"language": "GDScript",
+"path": "res://scripts/TileMaps.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
 "GitAPI": "",
 "Inventory": "",
-"Item": ""
+"Item": "",
+"TileMapController": ""
 }
 
 [application]

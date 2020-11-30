@@ -8,15 +8,20 @@ func _physics_process(delta):
 	animation.play("default")
 
 func on_pickup():
-	var main = self.get_parent()
-	for child in main.get_children():
-		if child.name == "Player":
-			$DurationTimer.wait_time = 5
-			$DurationTimer.start()
-			child.set_health(1000)
-		else:
-			pass
-	pass
+	if self.visible:
+		var main = self.get_parent()
+		get_parent().get_node("Invincibility").hide()
+		for child in main.get_children():
+			if child.name == "Player":
+				$DurationTimer.wait_time = 5
+				$DurationTimer.start()
+				child.set_health(1000)
+				hide()
+			else:
+				pass
+		pass
+	else:
+		pass
 
 func on_Timeout():
 	var main = self.get_parent()
@@ -28,35 +33,36 @@ func on_Timeout():
 				pass
 		else:
 			pass
-	pass
 
 func reset():
 	score = start_score
+	show()
 
 
-func _on_PickupArea4_body_entered(KinematicBody2D):
-	var parent = self.get_parent()
-	for node in parent.get_children():
-		if node.name == "CanvasLayer":
-			if node.get_child(0).name == "Score":
-				score = node.get_child(0).check_score()
-				var new_score = start_score + 100
-				if score >= new_score or score <= new_score:
-					new_score = score + 100
-					node.get_child(0).update_score(new_score)
-#				elif score > new_score:
-#					new_score == score + 100
-#					node.get_child(0).update_score(new_score)
-#				elif score < new_score:
-#					new_score == score + 100
-#					node.get_child(0).update_score(new_score)
-				else:
-					pass
-				
-		else:
-			pass
-	on_pickup()
-	#hide() # Replace with function body.
+func _on_PickupArea4_body_entered(body):
+	if body is KinematicBody2D:
+		var parent = self.get_parent()
+		for node in parent.get_children():
+			if node.name == "CanvasLayer":
+				if node.get_child(0).name == "Score":
+					score = node.get_child(0).check_score()
+					var new_score = start_score + 100
+					if score >= new_score or score <= new_score:
+						new_score = score + 100
+						node.get_child(0).update_score(new_score)
+	#				elif score > new_score:
+	#					new_score == score + 100
+	#					node.get_child(0).update_score(new_score)
+	#				elif score < new_score:
+	#					new_score == score + 100
+	#					node.get_child(0).update_score(new_score)
+					else:
+						pass
+					
+			else:
+				pass
+		on_pickup()
+		hide()
 
 
 func _on_DurationTimer_timeout():
