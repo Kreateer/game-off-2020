@@ -4,7 +4,7 @@ signal DamageArea_PlayerCollision()
 
 onready var damage_zone = $LightSource/OccluderEdge/DamageArea/DamageZone
 
-export (float) var DARKNESS_BASE_SPEED : float = 0.01
+export (float) var DARKNESS_BASE_SPEED : float = 0.06
 export (int) var modifier : int = 10
 var enabled = false
 var damage_zone_edge_offset

@@ -100,33 +100,57 @@ func _on_EndCollider_level_cleared():
 func _on_BasePopup_switch_tiles(tilemap):
 	
 	if tilemap == "Level1":
-		$GUI/FadeIn.play("FadeOut")
+		#$GUI/FadeIn.play("FadeOut")
+		#if $GUI/FadeIn.is_playing():
+		#	yield(get_tree().create_timer(2), "timeout")
+		get_tree().paused = false
 		$Player/VisibilityNotifier2D.hide()
 #		$EndPopup/BasePopup.hide()
 		$Level1.collision_layer = 1
 		$Level1.collision_mask = 1
-		$Level1.show()
 		$TileMap.hide(); $TileMap.queue_free()
+		$Level1.show()
+		$TutorialSpike.hide()
 		get_tree().call_group("MovementKeys", "stop")
 		get_tree().call_group("MovementKeys", "hide")
 		get_tree().call_group("LevelLabels", "hide")
+		get_tree().call_group("L1Spikes", "show")
 		
-		$Item3.position.x = 674; $Item3.position.y = 903
-		$Item4.position.x = 1297; $Item4.position.y = 870
-		$Item5.position.x = 2006; $Item5.position.y = 855
+		$SpeedBoost.position.x = 674; $SpeedBoost.position.y = 903
+		$TempInvul.position.x = 1297; $TempInvul.position.y = 870
+		$InfinOxy.position.x = 2006; $InfinOxy.position.y = 855
 		
 		$EndPopup/EndCollider.position.x = 3816; $EndPopup/EndCollider.position.y = 662
 		
+		darkness.DARKNESS_BASE_SPEED = 0.15
 		yield(get_tree().create_timer(2), "timeout")
 		
 		new_game()
-		
 		#yield(get_tree().create_timer(2), "timeout")
 		#$GUI/FadeIn.play("FadeIn")
 	
 	if tilemap == "Level2":
+		get_tree().paused = false
+		$Player/VisibilityNotifier2D.hide()
+#		$EndPopup/BasePopup.hide()
+		$Level2.collision_layer = 1
+		$Level2.collision_mask = 1
 		$Level2.show()
 		$Level1.hide(); $Level1.queue_free()
+#		get_tree().call_group("MovementKeys", "stop")
+#		get_tree().call_group("MovementKeys", "hide")
+#		get_tree().call_group("LevelLabels", "hide")
+		get_tree().call_group("L2Spikes", "show")
+		
+		$SpeedBoost.position.x = 1344; $SpeedBoost.position.y = 837
+		$TempInvul.position.x = 2272; $TempInvul.position.y = 998
+		$InfinOxy.position.x = 1920; $InfinOxy.position.y = 520
+		
+		$EndPopup/EndCollider.position.x = 3576; $EndPopup/EndCollider.position.y = 805
+		
+		yield(get_tree().create_timer(2), "timeout")
+		
+		new_game()
 
 	if tilemap == "Level3":
 		$Level3.show()

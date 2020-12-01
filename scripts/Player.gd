@@ -161,7 +161,3 @@ func _on_Player_Damage():
 		animation.play("Death")
 	else:
 		animation.play("Death")
-
-
-func _on_TileMap_collision():
-	pass # Replace with function body.

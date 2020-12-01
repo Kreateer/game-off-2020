@@ -15,8 +15,9 @@ func _ready():
 
 
 func _on_PickupArea1_body_entered(body):
-	if body is KinematicBody2D:
-		dmg_timer.start()
+	if visible:
+		if body is KinematicBody2D:
+			dmg_timer.start()
 
 func _on_DamageTimer_timeout():
 	damage = 10
@@ -28,5 +29,6 @@ func _on_DamageTimer_timeout():
 	pass
 
 func _on_PickupArea1_body_exited(body):
-	if body is KinematicBody2D:
-		dmg_timer.stop()
+	if visible:
+		if body is KinematicBody2D:
+			dmg_timer.stop()
