@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://scenes/PlayerHUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/EndCollider.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/PickupItem01.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/art/parallax/moon_surface.png" type="Texture" id=4]
 [ext_resource path="res://scenes/LvlEndPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=6]
@@ -17,105 +18,105 @@
 [ext_resource path="res://assets/art/buttons/mouse_keyboard_buttons/Keyboard_D_Button.png" type="Texture" id=17]
 [ext_resource path="res://assets/art/buttons/mouse_keyboard_buttons/Keyboard_W_Button.png" type="Texture" id=18]
 
-[sub_resource type="TileSet" id=21]
+[sub_resource type="TileSet" id=1]
 
-[sub_resource type="TileSet" id=22]
+[sub_resource type="TileSet" id=2]
 
-[sub_resource type="TileSet" id=23]
+[sub_resource type="TileSet" id=3]
 
-[sub_resource type="TileSet" id=24]
+[sub_resource type="TileSet" id=4]
 
-[sub_resource type="TileSet" id=25]
+[sub_resource type="TileSet" id=5]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 16 )
 region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 16 )
 region = Rect2( 64, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 16 )
 region = Rect2( 128, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 16 )
 region = Rect2( 192, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 16 )
 region = Rect2( 256, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "keyboardA",
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 18 )
 region = Rect2( 64, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 18 )
 region = Rect2( 128, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 18 )
 region = Rect2( 192, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 18 )
 region = Rect2( 256, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=17]
 animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "keyboardW",
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 17 )
 region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 17 )
 region = Rect2( 64, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 17 )
 region = Rect2( 128, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 17 )
 region = Rect2( 192, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 17 )
 region = Rect2( 256, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=18]
+[sub_resource type="SpriteFrames" id=23]
 animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": true,
 "name": "keyboardD",
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFontData" id=19]
+[sub_resource type="DynamicFontData" id=24]
 font_path = "res://assets/fonts/FFFFORWA.TTF"
 
-[sub_resource type="DynamicFont" id=20]
-font_data = SubResource( 19 )
+[sub_resource type="DynamicFont" id=25]
+font_data = SubResource( 24 )
 
 [sub_resource type="DynamicFontData" id=26]
 font_path = "res://assets/fonts/FFFFORWA.TTF"
@@ -168,7 +169,7 @@ tile_data = PoolIntArray( 1966318, 4, 0, 1966319, 4, 0, 1966320, 5, 0, 1966321, 
 ]]
 visible = false
 z_index = 4
-tile_set = SubResource( 21 )
+tile_set = SubResource( 1 )
 collision_layer = 4
 collision_mask = 4
 format = 1
@@ -178,7 +179,7 @@ format = 1
 ]]
 visible = false
 z_index = 3
-tile_set = SubResource( 22 )
+tile_set = SubResource( 2 )
 collision_layer = 4
 collision_mask = 4
 format = 1
@@ -188,7 +189,7 @@ format = 1
 ]]
 visible = false
 z_index = 2
-tile_set = SubResource( 23 )
+tile_set = SubResource( 3 )
 collision_layer = 4
 collision_mask = 4
 format = 1
@@ -198,7 +199,7 @@ format = 1
 ]]
 visible = false
 z_index = 1
-tile_set = SubResource( 24 )
+tile_set = SubResource( 4 )
 collision_layer = 4
 collision_mask = 4
 format = 1
@@ -207,7 +208,7 @@ format = 1
 "Levels",
 ]]
 visible = false
-tile_set = SubResource( 25 )
+tile_set = SubResource( 5 )
 collision_layer = 4
 collision_mask = 4
 format = 1
@@ -226,6 +227,10 @@ visible = false
 
 [node name="GameTitle" parent="GUI/TitleAnimation" index="0"]
 visible = false
+
+[node name="Item1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1336, 998 )
+scale = Vector2( 1.64, 1 )
 
 [node name="Item3" parent="." groups=[
 "Pickups",
@@ -267,7 +272,7 @@ position = Vector2( 1904, 888 )
 ]]
 pause_mode = 1
 position = Vector2( 336, 815 )
-frames = SubResource( 6 )
+frames = SubResource( 11 )
 animation = "keyboardA"
 
 [node name="KeyboardW" type="AnimatedSprite" parent="." groups=[
@@ -275,7 +280,7 @@ animation = "keyboardA"
 ]]
 pause_mode = 1
 position = Vector2( 368, 783 )
-frames = SubResource( 12 )
+frames = SubResource( 17 )
 animation = "keyboardW"
 
 [node name="KeyboardD" type="AnimatedSprite" parent="." groups=[
@@ -283,7 +288,7 @@ animation = "keyboardW"
 ]]
 pause_mode = 1
 position = Vector2( 400, 815 )
-frames = SubResource( 18 )
+frames = SubResource( 23 )
 animation = "keyboardD"
 
 [node name="Movement" type="Label" parent="." groups=[
@@ -294,7 +299,7 @@ margin_left = 184.0
 margin_top = 791.0
 margin_right = 300.0
 margin_bottom = 813.0
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 25 )
 text = "Movement:"
 align = 1
 valign = 1
@@ -310,7 +315,7 @@ margin_left = 566.0
 margin_top = 837.0
 margin_right = 694.0
 margin_bottom = 884.0
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 25 )
 text = "Super Speed
 (5 seconds)"
 align = 1
@@ -327,7 +332,7 @@ margin_left = 857.0
 margin_top = 742.0
 margin_right = 1003.0
 margin_bottom = 789.0
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 25 )
 text = "Invulnerability
 (5 seconds)"
 align = 1
@@ -344,7 +349,7 @@ margin_left = 1424.0
 margin_top = 799.0
 margin_right = 1578.0
 margin_bottom = 846.0
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 25 )
 text = "Infinite Oxygen
 (5 seconds)"
 align = 1
@@ -361,7 +366,7 @@ margin_left = 1739.0
 margin_top = 805.0
 margin_right = 1893.0
 margin_bottom = 927.0
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 25 )
 text = "Level 1"
 align = 1
 valign = 1

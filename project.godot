@@ -57,6 +57,7 @@ Constants="*res://scripts/Config/Constants.gd"
 Levels="*res://scripts/Config/Levels.gd"
 SceneLoader="*res://scripts/Config/SceneLoader.gd"
 MusicController="*res://scenes/MusicController.tscn"
+EffectController="*res://scenes/EffectController.tscn"
 
 [display]
 

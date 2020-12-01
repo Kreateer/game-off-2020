@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Lunarun SFX oxygen depleted.wav-6a0821f19b41cba767c9f4d5d67a8c30.sample"
+
+[deps]
+
+source_file="res://assets/audio/SFX/Oxygen/Lunarun SFX oxygen depleted.wav"
+dest_files=[ "res://.import/Lunarun SFX oxygen depleted.wav-6a0821f19b41cba767c9f4d5d67a8c30.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

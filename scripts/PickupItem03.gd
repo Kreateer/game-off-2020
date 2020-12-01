@@ -16,6 +16,7 @@ func on_pickup():
 				$DurationTimer.wait_time = 5
 				$DurationTimer.start()
 				child.movement_speed = 200
+				EffectController.play_effect("speed")
 			else:
 				pass
 		pass

@@ -20,11 +20,11 @@ func _ready():
 	new_game()
 	call_music()
 
-
 func _physics_process(delta):
 	# Reduce the oxygen bar value by remaining time
 	# left in the OxygenTimer
 	oxygen_bar.value = oxygen_timer.time_left
+	yield(get_tree().create_timer(3), "timeout")
 	oxygen_animation()
 
 func call_music():
@@ -64,6 +64,7 @@ func oxygen_animation():
 	if oxygen_timer.time_left <= 50:
 		$CanvasLayer/Oxygen/OxygenAnimation.play("50")
 	elif oxygen_timer.time_left <= 10:
+		EffectController.play_effect("oxylow")
 		$CanvasLayer/Oxygen/OxygenAnimation.play("10")
 	else:
 		$CanvasLayer/Oxygen/OxygenAnimation.stop()
@@ -71,6 +72,7 @@ func oxygen_animation():
 # Once OxygenTimer runs out, the Player's oxygen
 # effectively expires, which kills the Player.
 func _on_OxygenTimer_timeout():
+	EffectController.play_effect("oxynone")
 	$Player.player_oxygen(0, true)
 
 
@@ -89,7 +91,7 @@ func _on_Player_Dead(cause):
 # the score total.
 func _on_ScoreTimer_timeout():
 	var distance_from_darkness = $Player.position.x - darkness.get_edge_position_x();
-	score = score + round((distance_from_darkness / 100) + 1)
+	score = score + round((distance_from_darkness / 100) + 1)	
 	$CanvasLayer/Score.update_score(score)
 
 func _on_EndCollider_level_cleared():

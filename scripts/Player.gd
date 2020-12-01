@@ -130,8 +130,10 @@ func _on_Darkness_DamageArea_PlayerCollision():
 	if $Sprite.flip_h == true:
 		$Sprite.flip_h = false
 		$Sprite.play("DarkDeath")
+		EffectController.play_effect("death")
 	if $Sprite.is_playing() == false:
 		$Sprite.hide()
+	
 	_die(Constants.DARKNESS)
 
 # Kill Player when exiting map bounds

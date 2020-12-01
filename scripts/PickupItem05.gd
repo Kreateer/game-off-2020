@@ -13,6 +13,7 @@ func on_pickup():
 		get_parent().get_node("UnlimitedOxygen").hide()
 		main.oxygen_timer.stop()
 		main.oxygen_bar.value = main.oxygen_bar.max_value
+		EffectController.play_effect("infinoxy")
 		$DurationTimer.wait_time = 5
 		$DurationTimer.start()
 		hide()

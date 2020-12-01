@@ -16,6 +16,7 @@ func on_pickup():
 				$DurationTimer.wait_time = 5
 				$DurationTimer.start()
 				child.set_health(1000)
+				EffectController.play_effect("invul")
 				hide()
 			else:
 				pass
