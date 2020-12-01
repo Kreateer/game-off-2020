@@ -1,11 +1,11 @@
 extends Node2D
 
-signal level_cleared
+signal game_complete
 
 func on_collide():
 	# Pause Game And Show Level End Popup
-	var EndPopup = get_parent().get_parent().get_node("EndPopup/BasePopup")
-	var EndScore = get_parent().get_parent().get_node("EndPopup/BasePopup/ScoreNumber")
+	var EndPopup = get_parent().get_parent().get_node("GameComplete/BasePopup")
+	var EndScore = get_parent().get_parent().get_node("GameComplete/BasePopup/ScoreNumber")
 	get_tree().paused = true
 	EndPopup.show()
 	get_parent().get_parent().get_node("GUI/FadeIn/OverlayPanel").show()
@@ -16,6 +16,5 @@ func on_collide():
 				EndScore.text = child.get_child(0).text
 
 func _on_EndArea_body_entered(KinematicBody2D):
-	if visible:
-		on_collide()
-		emit_signal("level_cleared")
+	on_collide()
+	emit_signal("game_complete")

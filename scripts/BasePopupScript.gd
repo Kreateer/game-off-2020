@@ -24,7 +24,7 @@ func add_tilemaps():
 			tilemaps[child.name] = range(7)
 
 func next_level():
-	if level <= 6:
+	if level <= 3:
 		level += 1
 		if level == 1:
 			emit_signal("switch_tiles", "Level1")
@@ -41,20 +41,20 @@ func next_level():
 			self.hide()
 			#get_tree().paused = false
 		
-		elif level == 4:
-			emit_signal("switch_tiles", "Level4")
-			self.hide()
-			#get_tree().paused = false
-		
-		elif level == 5:
-			emit_signal("switch_tiles", "Level5")
-			self.hide()
-			#get_tree().paused = false
-		
-		elif level == 6:
-			emit_signal("switch_tiles", "Level6")
-			self.hide()
-			#get_tree().paused = false
+#		elif level == 4:
+#			emit_signal("switch_tiles", "Level4")
+#			self.hide()
+#			#get_tree().paused = false
+#
+#		elif level == 5:
+#			emit_signal("switch_tiles", "Level5")
+#			self.hide()
+#			#get_tree().paused = false
+#
+#		elif level == 6:
+#			emit_signal("switch_tiles", "Level6")
+#			self.hide()
+#			#get_tree().paused = false
 		else:
 			pass
 	else:

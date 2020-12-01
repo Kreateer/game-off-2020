@@ -121,8 +121,9 @@ func _on_BasePopup_switch_tiles(tilemap):
 		$InfinOxy.position.x = 2006; $InfinOxy.position.y = 855
 		
 		$EndPopup/EndCollider.position.x = 3816; $EndPopup/EndCollider.position.y = 662
+		$GameComplete/GameCompleteCollider.hide()
 		
-		darkness.DARKNESS_BASE_SPEED = 0.15
+		darkness.DARKNESS_BASE_SPEED = 0.20
 		yield(get_tree().create_timer(2), "timeout")
 		
 		new_game()
@@ -140,6 +141,7 @@ func _on_BasePopup_switch_tiles(tilemap):
 #		get_tree().call_group("MovementKeys", "stop")
 #		get_tree().call_group("MovementKeys", "hide")
 #		get_tree().call_group("LevelLabels", "hide")
+		get_tree().call_group("L1Spikes", "hide")
 		get_tree().call_group("L2Spikes", "show")
 		
 		$SpeedBoost.position.x = 1344; $SpeedBoost.position.y = 837
@@ -147,23 +149,50 @@ func _on_BasePopup_switch_tiles(tilemap):
 		$InfinOxy.position.x = 1920; $InfinOxy.position.y = 520
 		
 		$EndPopup/EndCollider.position.x = 3576; $EndPopup/EndCollider.position.y = 805
+		$GameComplete/GameCompleteCollider.hide()
 		
+		darkness.DARKNESS_BASE_SPEED = 0.30
 		yield(get_tree().create_timer(2), "timeout")
 		
 		new_game()
 
 	if tilemap == "Level3":
+		get_tree().paused = false
+		$Player/VisibilityNotifier2D.hide()
+		$Level3.collision_layer = 1
+		$Level3.collision_mask = 1
 		$Level3.show()
 		$Level2.hide(); $Level2.queue_free()
+#		get_tree().call_group("MovementKeys", "stop")
+#		get_tree().call_group("MovementKeys", "hide")
+#		get_tree().call_group("LevelLabels", "hide")
+		get_tree().call_group("L2Spikes", "hide")
+		get_tree().call_group("L3Spikes", "show")
+		
+		$SpeedBoost.position.x = 600; $SpeedBoost.position.y = 854
+		$TempInvul.position.x = 2024; $TempInvul.position.y = 805
+		$InfinOxy.position.x = 2520; $InfinOxy.position.y = 919
+		
+		$EndPopup/EndCollider.hide()
+		$GameComplete/GameCompleteCollider.show()
+		
+		darkness.DARKNESS_BASE_SPEED = 0.40
+		yield(get_tree().create_timer(2), "timeout")
+		
+		new_game()
 	
-	if tilemap == "Level4":
-		$Level4.show()
-		$Level3.hide(); $Level3.queue_free()
-	
-	if tilemap == "Level5":
-		$Level5.show()
-		$Level4.hide(); $Level4.queue_free()
-	
-	if tilemap == "Level6":
-		$Level6.show()
-		$Level5.hide(); $Level5.queue_free()
+#	if tilemap == "Level4":
+#		$Level4.show()
+#		$Level3.hide(); $Level3.queue_free()
+#
+#	if tilemap == "Level5":
+#		$Level5.show()
+#		$Level4.hide(); $Level4.queue_free()
+#
+#	if tilemap == "Level6":
+#		$Level6.show()
+#		$Level5.hide(); $Level5.queue_free()
+
+
+func _on_GameCompleteCollider_game_complete():
+	$GameComplete/BasePopup.show()
